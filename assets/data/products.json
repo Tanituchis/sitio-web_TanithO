@@ -35,7 +35,7 @@
     "description": "Servicio de base de datos en la nube totalmente administrado con escalabilidad automática y alta disponibilidad.",
     "price": 499,
     "category": "cloud",
-    "image": "https://images.pexels.com/photos/4508748/pexels-photo-4508748.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "image": "./assets/img/oracle-data.jpeg",
     "features": [
       "Escalado automático según demanda",
       "Respaldos diarios automatizados",

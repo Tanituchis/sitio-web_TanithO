@@ -546,17 +546,20 @@ footer {
 }
 
 .quantity-input {
-  width: 40px;
+  width: 80px;
   height: 30px;
   text-align: center;
+  color:  #000;
   margin: 0 5px;
   border: 1px solid #eee;
 }
 
 .remove-item {
-  color: #ff0000;
+  color: #ff00007b;
   cursor: pointer;
   font-size: 0.9rem;
+  border: none;
+  background: transparent;
 }
 
 .order-summary {
@@ -580,6 +583,67 @@ footer {
   border-top: 1px solid #eee;
   padding-top: 15px;
   margin-top: 15px;
+}
+
+.cart-counter {
+  background-color: var(--primary-color);
+  padding: 10px;
+  color: var(--white);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  margin-left: .6rem;
+  
+}
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 250px;
+  max-width: 350px;
+  padding: 15px 20px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: white;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.3s ease-out;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tipos de notificaciones */
+.notification.info {
+  background-color: #2196F3;
+}
+
+.notification.success {
+  background-color: #4CAF50;
+}
+
+.notification.warning {
+  background-color: #FF9800;
+}
+
+.notification.error {
+  background-color: #F44336;
+}
+
+/* Adaptación a móviles */
+@media screen and (max-width: 480px) {
+  .notification {
+      bottom: 10px;
+      right: 10px;
+      left: 10px;
+      min-width: auto;
+      max-width: none;
+  }
 }
 
 /* Estilos para dispositivos móviles */
