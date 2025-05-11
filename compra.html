@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - OracleTech</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .error {
+            border-color: red !important;
+        }
+
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .checkout-steps::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #e0e0e0;
+            z-index: 1;
+        }
+
+        .checkout-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .checkout-step.active .step-number {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .checkout-step.completed .step-number {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .step-title {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        .checkout-step.active .step-title {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .checkout-step.completed .step-title {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .checkout-section {
+            display: none;
+        }
+
+        .checkout-section.active {
+            display: block;
+        }
+
+        .checkout-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .cart-summary {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .cart-summary-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cart-summary-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .cart-summary.expanded .cart-summary-content {
+            max-height: 500px;
+        }
+
+        .cart-summary-toggle {
+            cursor: pointer;
+        }
+
+        .cart-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .payment-method-content {
+            display: none;
+        }
+
+        input[name="payment"]:checked+.payment-method-content {
+            display: block;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            background: #333;
+            color: white;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+            max-width: 300px;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .notification.success {
+            background: #4CAF50;
+        }
+
+        .notification.error {
+            background: #F44336;
+        }
+
+        .notification.info {
+            background: #2196F3;
+        }
+
+        .order-confirmation {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .confirmation-icon {
+            font-size: 5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .order-details {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-total {
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fas fa-database"></i>
+            <h2>OracleTech</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+            <li><a href="servicios.html"><i class="fas fa-cogs"></i> <span>Servicios</span></a></li>
+            <li><a href="productos.html"><i class="fas fa-server"></i> <span>Productos</span></a></li>
+            <li><a href="historia.html"><i class="fas fa-history"></i> <span>Historia</span></a></li>
+            <li><a href="contacto.html"><i class="fas fa-envelope"></i> <span>Contacto</span></a></li>
+            <li><a href="usuario.html"><i class="fas fa-user"></i> <span>Mi cuenta</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Finalizar Compra</h1>
+            <div class="user-actions">
+                <!-- Se llenará dinámicamente con JS -->
+            </div>
+        </header>
+
+        <!-- Pasos del checkout -->
+        <div class="checkout-steps">
+            <div class="checkout-step active" id="cart-step">
+                <div class="step-number">1</div>
+                <div class="step-title">Carrito</div>
+            </div>
+            <div class="checkout-step" id="shipping-step">
+                <div class="step-number">2</div>
+                <div class="step-title">Envío</div>
+            </div>
+            <div class="checkout-step" id="payment-step">
+                <div class="step-number">3</div>
+                <div class="step-title">Pago</div>
+            </div>
+            <div class="checkout-step" id="confirmation-step">
+                <div class="step-number">4</div>
+                <div class="step-title">Confirmación</div>
+            </div>
+        </div>
+
+        <!-- Checkout -->
+        <section class="section">
+            <div class="checkout-container">
+                <!-- Paso 1: Carrito -->
+                <div class="checkout-section active" id="cart-section">
+                    <h2 class="section-title">Su carrito</h2>
+                    <div class="cart-items">
+                        <!-- Se llenará dinámicamente desde JS -->
+                    </div>
+
+                    <div class="checkout-navigation">
+                        <a href="productos.html" class="btn btn-secondary">Seguir comprando</a>
+                        <button id="to-shipping" class="btn">Continuar al envío</button>
+                    </div>
+                </div>
+
+                <!-- Paso 2: Información de envío -->
+                <div class="checkout-section" id="shipping-section">
+                    <h2 class="section-title">Información de envío</h2>
+
+                    <!-- Resumen del carrito (colapsable) -->
+                    <div class="cart-summary">
+                        <div class="cart-summary-title">
+                            <span>Resumen del carrito</span>
+                            <span class="cart-summary-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="cart-summary-content">
+                            <!-- Se llenará dinámicamente desde JS -->
+                        </div>
+                    </div>
+
+                    <form id="shipping-form">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="shipping-first-name">Nombre *</label>
+                                <input type="text" id="shipping-first-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipping-last-name">Apellidos *</label>
+                                <input type="text" id="shipping-last-name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shipping-company">Empresa (opcional)</label>
+                            <input type="text" id="shipping-company">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shipping-country">País / Región *</label>
+                            <select id="shipping-country" required>
+                                <option value="">Seleccione un país</option>
+                                <option value="mexico">México</option>
+                                <option value="colombia">Colombia</option>
+                                <option value="peru">Perú</option>
+                                <option value="chile">Chile</option>
+                                <option value="espana">España</option>
+                                <option value="estados_unidos">Estados Unidos</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shipping-address">Dirección *</label>
+                            <input type="text" id="shipping-address" placeholder="Número y calle" required>
+                            <input type="text" id="shipping-address-2"
+                                placeholder="Apartamento, suite, unidad, etc. (opcional)" style="margin-top: 10px;">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="shipping-city">Ciudad *</label>
+                                <input type="text" id="shipping-city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipping-state">Estado/Provincia *</label>
+                                <input type="text" id="shipping-state" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipping-zip">Código postal *</label>
+                                <input type="text" id="shipping-zip" required>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="shipping-email">Email *</label>
+                                <input type="email" id="shipping-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipping-phone">Teléfono *</label>
+                                <input type="tel" id="shipping-phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shipping-notes">Notas de envío (opcional)</label>
+                            <textarea id="shipping-notes"
+                                placeholder="Instrucciones especiales para la entrega"></textarea>
+                        </div>
+                    </form>
+
+                    <div class="checkout-navigation">
+                        <button id="back-to-cart" class="btn btn-secondary">Volver al carrito</button>
+                        <button id="to-payment" class="btn">Continuar al pago</button>
+                    </div>
+                </div>
+
+                <!-- Paso 3: Información de pago -->
+                <div class="checkout-section" id="payment-section">
+                    <h2 class="section-title">Información de pago</h2>
+
+                    <!-- Resumen del carrito (colapsable) -->
+                    <div class="cart-summary">
+                        <div class="cart-summary-title">
+                            <span>Resumen del carrito</span>
+                            <span class="cart-summary-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="cart-summary-content">
+                            <!-- Se llenará dinámicamente desde JS -->
+                        </div>
+                    </div>
+
+                    <!-- Resumen de envío -->
+                    <div class="shipping-summary"
+                        style="background-color: #f9f9f9; padding: 15px; border-radius: var(--border-radius); margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="margin: 0;">Información de envío</h3>
+                            <button id="edit-shipping" class="btn btn-secondary"
+                                style="padding: 5px 10px; font-size: 0.8rem;">Editar</button>
+                        </div>
+                        <div id="shipping-summary-content" style="margin-top: 10px;">
+                            <!-- Se llenará dinámicamente desde JS -->
+                        </div>
+                    </div>
+
+                    <form id="payment-form">
+                        <h3>Método de pago</h3>
+
+                        <div class="payment-methods">
+                            <div class="form-group">
+                                <label class="radio-label" style="display: flex; align-items: center;">
+                                    <input type="radio" name="payment" value="card" checked style="margin-right: 10px;">
+                                    <span style="margin-right: 10px;">Tarjeta de crédito/débito</span>
+                                    <div style="display: flex; gap: 5px;">
+                                        <i class="fab fa-cc-visa" style="font-size: 1.5rem;"></i>
+                                        <i class="fab fa-cc-mastercard" style="font-size: 1.5rem;"></i>
+                                        <i class="fab fa-cc-amex" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                </label>
+
+                                <div class="payment-method-content" id="card-payment-content"
+                                    style="margin: 15px 0 15px 25px;">
+                                    <div class="form-group">
+                                        <label for="card-number">Número de tarjeta *</label>
+                                        <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" required>
+                                    </div>
+
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                        <div class="form-group">
+                                            <label for="card-expiry">Fecha de expiración *</label>
+                                            <input type="text" id="card-expiry" placeholder="MM/AA" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="card-cvc">CVC/CVV *</label>
+                                            <input type="text" id="card-cvc" placeholder="XXX" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="card-name">Nombre en la tarjeta *</label>
+                                        <input type="text" id="card-name" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="radio-label" style="display: flex; align-items: center;">
+                                    <input type="radio" name="payment" value="paypal" style="margin-right: 10px;">
+                                    <span style="margin-right: 10px;">PayPal</span>
+                                    <i class="fab fa-paypal" style="font-size: 1.5rem;"></i>
+                                </label>
+
+                                <div class="payment-method-content" id="paypal-payment-content"
+                                    style="margin: 15px 0 15px 25px; display: none;">
+                                    <p>Serás redirigido a PayPal para completar tu pago de forma segura.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="radio-label" style="display: flex; align-items: center;">
+                                    <input type="radio" name="payment" value="bank" style="margin-right: 10px;">
+                                    <span>Transferencia bancaria</span>
+                                </label>
+
+                                <div class="payment-method-content" id="bank-payment-content"
+                                    style="margin: 15px 0 15px 25px; display: none;">
+                                    <p>Realiza el pago directamente a nuestra cuenta bancaria. Por favor, usa el número
+                                        de pedido como referencia de pago. Tu pedido no se procesará hasta que los
+                                        fondos se hayan recibido en nuestra cuenta.</p>
+                                    <div
+                                        style="background: #f5f5f5; padding: 15px; margin-top: 15px; border-radius: 4px;">
+                                        <p style="margin: 0 0 5px 0;"><strong>Banco:</strong> Banco Nacional</p>
+                                        <p style="margin: 0 0 5px 0;"><strong>Titular:</strong> OracleTech S.A.</p>
+                                        <p style="margin: 0 0 5px 0;"><strong>Cuenta:</strong> 1234 5678 9012 3456</p>
+                                        <p style="margin: 0 0 0 0;"><strong>CLABE:</strong> 012 345 6789012345678</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms-checkbox" required>
+                                He leído y acepto los <a href="#">términos y condiciones</a> *
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="order-summary" style="margin-top: 30px;">
+                        <h3>Resumen del pedido</h3>
+
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span class="summary-subtotal value">$0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Envío:</span>
+                            <span class="summary-shipping value">$0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Impuestos:</span>
+                            <span class="summary-tax value">$0</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Total:</span>
+                            <span class="value">$0</span>
+                        </div>
+
+                        <div class="secure-checkout" style="margin-top: 20px; text-align: center;">
+                            <i class="fas fa-lock" style="color: var(--primary-color);"></i>
+                            <span style="font-size: 0.9rem;">Pago 100% seguro</span>
+                        </div>
+                    </div>
+
+                    <div class="checkout-navigation">
+                        <button id="back-to-shipping" class="btn btn-secondary">Volver al envío</button>
+                        <button id="place-order" class="btn">Realizar pedido</button>
+                    </div>
+                </div>
+
+                <!-- Paso 4: Confirmación de pedido -->
+                <div class="checkout-section" id="confirmation-section">
+                    <div class="order-confirmation">
+                        <div class="confirmation-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>¡Gracias por su compra!</h2>
+                        <p>Su orden ha sido procesada exitosamente.</p>
+
+                        <div class="order-details">
+                            <h3>Detalles del pedido</h3>
+                            <p><strong>Número de orden:</strong> <span id="order-number">ORD-123456</span></p>
+                            <p><strong>Fecha:</strong> <span id="order-date"></span></p>
+
+                            <h4 style="margin-top: 20px;">Productos</h4>
+                            <div id="order-items">
+                                <!-- Se llenará dinámicamente desde JS -->
+                            </div>
+
+                            <div class="order-total">
+                                <span>Total:</span>
+                                <span id="order-total">$0</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px;">
+                            <p>Hemos enviado un correo electrónico con los detalles de su compra a <span
+                                    id="confirmation-email"></span>.</p>
+                            <p>Si tiene alguna pregunta sobre su pedido, por favor contacte a nuestro equipo de soporte.
+                            </p>
+                        </div>
+
+                        <div style="margin-top: 30px;">
+                            <a href="index.html" class="btn">Volver al inicio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>OracleTech</h3>
+                    <p>Expertos en soluciones de bases de datos y servidores para empresas de todos los tamaños.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="historia.html">Historia</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Tecnológica 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@oracletech.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir noticias y ofertas exclusivas.</p>
+                    <form>
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit" class="btn">Suscribir</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2025 OracleTech. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Variables globales
+        // No declaramos cart aquí porque ya está declarado en main.js
+        let shippingData = {};
+        let currentStep = 1;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar carrito desde localStorage
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart); // Usamos la variable cart del ámbito global de main.js
+            }
+            
+            // Si el carrito está vacío, redirigir a productos
+            if (cart.length === 0) {
+                showNotification('Su carrito está vacío', 'info');
+                setTimeout(() => {
+                    window.location.href = 'productos.html';
+                }, 2000);
+                return;
+            }
+            
+            // Inicializar la página
+            displayCartItems();
+            updateCartSummary();
+            updateOrderSummary();
+            setupEventListeners();
+            
+            // Mostrar fecha actual en la confirmación
+            document.getElementById('order-date').textContent = new Date().toLocaleDateString();
+            
+            // Generar número de orden aleatorio
+            document.getElementById('order-number').textContent = 'ORD-' + Math.floor(Math.random() * 1000000);
+        });
+
+        function displayCartItems() {
+            const cartItemsContainer = document.querySelector('.cart-items');
+            if (!cartItemsContainer) return;
+
+            let cartHTML = '';
+
+            cart.forEach(item => {
+                cartHTML += `
+                    <div class="cart-item" data-id="${item.id}">
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">${item.name}</h3>
+                            <p class="card-item-price">$${item.price.toLocaleString()}</p>
+                            <div class="cart-item-actions">
+                                <div class="item-quantity">
+                                    <button class="quantity-btn decrease-quantity">-</button>
+                                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" readonly>
+                                    <button class="quantity-btn increase-quantity">+</button>
+                                </div>
+                                <button class="remove-item">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartItemsContainer.innerHTML = cartHTML;
+
+            // Agregar event listeners para botones de cantidad
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', function () {
+                    const cartItem = this.closest('.cart-item');
+                    const productId = parseInt(cartItem.getAttribute('data-id'));
+                    updateCartItemQuantity(productId, 1);
+                });
+            });
+
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', function () {
+                    const cartItem = this.closest('.cart-item');
+                    const productId = parseInt(cartItem.getAttribute('data-id'));
+                    updateCartItemQuantity(productId, -1);
+                });
+            });
+
+            // Event listeners para botón eliminar
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function () {
+                    const cartItem = this.closest('.cart-item');
+                    const productId = parseInt(cartItem.getAttribute('data-id'));
+                    removeCartItem(productId);
+                });
+            });
+        }
+
+        function updateCartSummary() {
+            const cartSummaryContents = document.querySelectorAll('.cart-summary-content');
+
+            if (cartSummaryContents.length === 0) return;
+
+            let cartSummaryHTML = '';
+
+            cart.forEach(item => {
+                cartSummaryHTML += `
+                    <div class="cart-summary-item">
+                        <span>${item.name} x ${item.quantity}</span>
+                        <span>$${(item.price * item.quantity).toLocaleString()}</span>
+                    </div>
+                `;
+            });
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = 10; // Costo de envío fijo
+            const tax = Math.round(subtotal * 0.16); // 16% de impuestos
+            const total = subtotal + shipping + tax;
+
+            cartSummaryHTML += `
+                <div class="cart-summary-item" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd;">
+                    <span>Subtotal:</span>
+                    <span>$${subtotal.toLocaleString()}</span>
+                </div>
+                <div class="cart-summary-item">
+                    <span>Envío:</span>
+                    <span>$${shipping.toLocaleString()}</span>
+                </div>
+                <div class="cart-summary-item">
+                    <span>Impuestos:</span>
+                    <span>$${tax.toLocaleString()}</span>
+                </div>
+                <div class="cart-summary-item" style="font-weight: bold; margin-top: 5px;">
+                    <span>Total:</span>
+                    <span>$${total.toLocaleString()}</span>
+                </div>
+            `;
+
+            cartSummaryContents.forEach(container => {
+                container.innerHTML = cartSummaryHTML;
+            });
+
+            // Hacer que los resúmenes del carrito sean expandibles
+            document.querySelectorAll('.cart-summary-toggle').forEach(toggle => {
+                toggle.addEventListener('click', function () {
+                    const cartSummary = this.closest('.cart-summary');
+                    cartSummary.classList.toggle('expanded');
+
+                    // Cambiar el ícono
+                    const icon = this.querySelector('i');
+                    if (cartSummary.classList.contains('expanded')) {
+                        icon.className = 'fas fa-chevron-up';
+                    } else {
+                        icon.className = 'fas fa-chevron-down';
+                    }
+                });
+            });
+        }
+
+        function updateOrderSummary() {
+            const subtotalElement = document.querySelector('.summary-subtotal');
+            const shippingElement = document.querySelector('.summary-shipping');
+            const taxElement = document.querySelector('.summary-tax');
+            const totalElement = document.querySelector('.summary-total .value');
+
+            if (!subtotalElement || !shippingElement || !taxElement || !totalElement) return;
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = subtotal > 0 ? 10 : 0; // Costo de envío fijo
+            const tax = Math.round(subtotal * 0.16); // 16% de impuestos
+            const total = subtotal + shipping + tax;
+
+            subtotalElement.textContent = `$${subtotal.toLocaleString()}`;
+            shippingElement.textContent = `$${shipping.toLocaleString()}`;
+            taxElement.textContent = `$${tax.toLocaleString()}`;
+            totalElement.textContent = `$${total.toLocaleString()}`;
+
+            // Actualizar el total en la confirmación
+            const orderTotal = document.getElementById('order-total');
+            if (orderTotal) {
+                orderTotal.textContent = `$${total.toLocaleString()}`;
+            }
+        }
+
+        function updateCartItemQuantity(productId, change) {
+            const itemIndex = cart.findIndex(item => item.id === productId);
+            if (itemIndex === -1) return;
+
+            cart[itemIndex].quantity += change;
+
+            // Eliminar producto si la cantidad es 0 o menor
+            if (cart[itemIndex].quantity <= 0) {
+                removeCartItem(productId);
+                return;
+            }
+
+            // Actualizar UI y localStorage
+            const quantityInput = document.querySelector(`.cart-item[data-id="${productId}"] .quantity-input`);
+            if (quantityInput) {
+                quantityInput.value = cart[itemIndex].quantity;
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartSummary();
+            updateOrderSummary();
+        }
+
+        function removeCartItem(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Actualizar UI
+            const cartItem = document.querySelector(`.cart-item[data-id="${productId}"]`);
+            if (cartItem) {
+                cartItem.remove();
+            }
+
+            // Si no hay productos, redirigir a productos
+            if (cart.length === 0) {
+                showNotification('Su carrito está vacío', 'info');
+                setTimeout(() => {
+                    window.location.href = 'productos.html';
+                }, 2000);
+                return;
+            }
+
+            updateCartSummary();
+            updateOrderSummary();
+        }
+
+        function setupEventListeners() {
+            // Evento para continuar al envío
+            document.getElementById('to-shipping').addEventListener('click', function () {
+                goToStep(2);
+            });
+
+            // Evento para volver al carrito
+            document.getElementById('back-to-cart').addEventListener('click', function () {
+                goToStep(1);
+            });
+
+            // Evento para continuar al pago
+            document.getElementById('to-payment').addEventListener('click', function () {
+                if (validateShippingForm()) {
+                    // Guardar datos del formulario de envío
+                    saveShippingData();
+                    updateShippingSummary();
+                    goToStep(3);
+                }
+            });
+
+            // Evento para volver al envío
+            document.getElementById('back-to-shipping').addEventListener('click', function () {
+                goToStep(2);
+            });
+
+            // Evento para editar información de envío
+            document.getElementById('edit-shipping').addEventListener('click', function () {
+                goToStep(2);
+            });
+
+            // Evento para realizar pedido
+            document.getElementById('place-order').addEventListener('click', function () {
+                if (validatePaymentForm()) {
+                    processOrder();
+                }
+            });
+
+            // Eventos para métodos de pago
+            document.querySelectorAll('input[name="payment"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    // Ocultar todos los contenidos de métodos de pago
+                    document.querySelectorAll('.payment-method-content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+
+                    // Mostrar el contenido del método seleccionado
+                    const methodContent = document.getElementById(`${this.value}-payment-content`);
+                    if (methodContent) {
+                        methodContent.style.display = 'block';
+                    }
+                });
+            });
+
+            // Inicializar resúmenes de carrito expandibles
+            document.querySelectorAll('.cart-summary-toggle').forEach(toggle => {
+                toggle.addEventListener('click', function () {
+                    const cartSummary = this.closest('.cart-summary');
+                    cartSummary.classList.toggle('expanded');
+
+                    // Cambiar el ícono
+                    const icon = this.querySelector('i');
+                    if (cartSummary.classList.contains('expanded')) {
+                        icon.className = 'fas fa-chevron-up';
+                    } else {
+                        icon.className = 'fas fa-chevron-down';
+                    }
+                });
+            });
+        }
+
+        function goToStep(step) {
+            // Actualizar pasos
+            document.querySelectorAll('.checkout-step').forEach((el, index) => {
+                if (index + 1 < step) {
+                    el.classList.remove('active');
+                    el.classList.add('completed');
+                } else if (index + 1 === step) {
+                    el.classList.add('active');
+                    el.classList.remove('completed');
+                } else {
+                    el.classList.remove('active', 'completed');
+                }
+            });
+
+            // Actualizar secciones
+            document.querySelectorAll('.checkout-section').forEach((el, index) => {
+                el.classList.toggle('active', index + 1 === step);
+            });
+
+            // Actualizar variable global
+            currentStep = step;
+
+            // Scroll al inicio
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function validateShippingForm() {
+            const requiredFields = document.querySelectorAll('#shipping-form [required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    isValid = false;
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+
+            if (!isValid) {
+                showNotification('Por favor, complete todos los campos requeridos', 'error');
+            }
+
+            return isValid;
+        }
+
+        function validatePaymentForm() {
+            // Verificar aceptación de términos
+            const termsCheckbox = document.getElementById('terms-checkbox');
+            if (!termsCheckbox.checked) {
+                showNotification('Debe aceptar los términos y condiciones', 'error');
+                return false;
+            }
+
+            // Obtener método de pago seleccionado
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+            // Validar campos según el método de pago
+            if (paymentMethod === 'card') {
+                const cardFields = document.querySelectorAll('#card-payment-content [required]');
+                let isValid = true;
+
+                cardFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('error');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('error');
+
+                        // Validaciones específicas
+                        if (field.id === 'card-number') {
+                            // Validar formato de número de tarjeta
+                            const cardNumber = field.value.replace(/\s+/g, '');
+                            if (!/^\d{15,16}$/.test(cardNumber)) {
+                                field.classList.add('error');
+                                isValid = false;
+                            }
+                        } else if (field.id === 'card-expiry') {
+                            // Validar formato de fecha de expiración
+                            if (!/^\d{2}\/\d{2}$/.test(field.value)) {
+                                field.classList.add('error');
+                                isValid = false;
+                            }
+                        } else if (field.id === 'card-cvc') {
+                            // Validar formato de CVC
+                            if (!/^\d{3,4}$/.test(field.value)) {
+                                field.classList.add('error');
+                                isValid = false;
+                            }
+                        }
+                    }
+                });
+
+                if (!isValid) {
+                    showNotification('Por favor, complete correctamente los datos de la tarjeta', 'error');
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function saveShippingData() {
+            shippingData = {
+                firstName: document.getElementById('shipping-first-name').value,
+                lastName: document.getElementById('shipping-last-name').value,
+                company: document.getElementById('shipping-company').value,
+                country: document.getElementById('shipping-country').value,
+                address: document.getElementById('shipping-address').value,
+                address2: document.getElementById('shipping-address-2').value,
+                city: document.getElementById('shipping-city').value,
+                state: document.getElementById('shipping-state').value,
+                zip: document.getElementById('shipping-zip').value,
+                email: document.getElementById('shipping-email').value,
+                phone: document.getElementById('shipping-phone').value,
+                notes: document.getElementById('shipping-notes').value
+            };
+        }
+
+        function updateShippingSummary() {
+            const shippingSummaryContent = document.getElementById('shipping-summary-content');
+            if (!shippingSummaryContent) return;
+
+            const countryName = document.querySelector(`#shipping-country option[value="${shippingData.country}"]`).textContent;
+
+            shippingSummaryContent.innerHTML = `
+                <p><strong>${shippingData.firstName} ${shippingData.lastName}</strong></p>
+                ${shippingData.company ? `<p>${shippingData.company}</p>` : ''}
+                <p>${shippingData.address}</p>
+                ${shippingData.address2 ? `<p>${shippingData.address2}</p>` : ''}
+                <p>${shippingData.city}, ${shippingData.state} ${shippingData.zip}</p>
+                <p>${countryName}</p>
+                <p><strong>Email:</strong> ${shippingData.email}</p>
+                <p><strong>Teléfono:</strong> ${shippingData.phone}</p>
+            `;
+
+            // Actualizar también el correo en la confirmación
+            document.getElementById('confirmation-email').textContent = shippingData.email;
+        }
+
+        function processOrder() {
+            // Mostrar mensaje de procesamiento
+            showNotification('Procesando su orden...', 'info');
+
+            // Simular procesamiento de orden (en un entorno real, aquí se enviaría a un servidor)
+            setTimeout(() => {
+                // Actualizar la UI al paso de confirmación
+                goToStep(4);
+
+                // Generar items para la confirmación
+                const orderItemsContainer = document.getElementById('order-items');
+                let orderItemsHTML = '';
+
+                cart.forEach(item => {
+                    orderItemsHTML += `
+                        <div class="order-item">
+                            <span>${item.name} x ${item.quantity}</span>
+                            <span>$${(item.price * item.quantity).toLocaleString()}</span>
+                        </div>
+                    `;
+                });
+
+                orderItemsContainer.innerHTML = orderItemsHTML;
+
+                // Limpiar carrito después de la compra
+                cart = [];
+                localStorage.removeItem('cart');
+
+                // Mostrar mensaje de éxito
+                showNotification('¡Orden completada con éxito!', 'success');
+            }, 2000);
+        }
+
+        function showNotification(message, type = 'info') {
+            // Crear elemento de notificación
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+
+            // Añadir al DOM
+            document.body.appendChild(notification);
+
+            // Mostrar con animación
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

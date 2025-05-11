@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "name": "Consultoría en Bases de Datos",
+    "description": "Nuestros expertos analizan su infraestructura actual y proponen soluciones optimizadas para mejorar el rendimiento y la seguridad de sus bases de datos.",
+    "price": "Desde $2,500",
+    "image": "https://cdn.pixabay.com/photo/2017/07/10/23/43/question-mark-2492009_1280.jpg",
+    "features": [
+      "Auditoría de rendimiento",
+      "Recomendaciones de seguridad",
+      "Optimización de consultas",
+      "Estrategias de escalabilidad",
+      "Planes de migración"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Implementación de Servidores",
+    "description": "Servicio completo de configuración e implementación de servidores Oracle, incluyendo instalación, configuración y pruebas de rendimiento.",
+    "price": "Desde $5,000",
+    "image": "./assets/img/servidores.png",
+    "features": [
+      "Evaluación de necesidades",
+      "Diseño de arquitectura",
+      "Instalación profesional",
+      "Configuración optimizada",
+      "Capacitación al personal"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Migración a la Nube",
+    "description": "Traslade sus bases de datos y aplicaciones a soluciones en la nube con mínimo tiempo de inactividad y máxima seguridad de datos.",
+    "price": "Desde $8,000",
+    "image": "https://cdn.pixabay.com/photo/2017/01/22/22/11/cloud-computing-2001090_1280.jpg",
+    "features": [
+      "Análisis de viabilidad",
+      "Planificación detallada",
+      "Migración segura de datos",
+      "Pruebas exhaustivas",
+      "Soporte post-migración"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Monitoreo y Administración",
+    "description": "Servicio de administración continua para mantener sus bases de datos en óptimas condiciones, con monitoreo 24/7 y soporte técnico especializado.",
+    "price": "Desde $1,200/mes",
+    "image": "data:image/jpeg;base64,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",
+    "features": [
+      "Monitoreo proactivo 24/7",
+      "Respuesta rápida a incidentes",
+      "Optimización continua",
+      "Actualizaciones programadas",
+      "Informes mensuales de rendimiento"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Recuperación de Desastres",
+    "description": "Implementación de estrategias robustas para garantizar la continuidad del negocio ante cualquier eventualidad, minimizando la pérdida de datos.",
+    "price": "Desde $6,500",
+    "image": "https://9nn339.p3cdn2.secureserver.net/wp-content/uploads/2020/11/disaster-recovery-plan-DRP.jpg",
+    "features": [
+      "Evaluación de riesgos",
+      "Estrategias de respaldo personalizadas",
+      "Configuración de sitios alternos",
+      "Pruebas de recuperación",
+      "Documentación de procedimientos"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Desarrollo de Aplicaciones Empresariales",
+    "description": "Diseño y desarrollo de aplicaciones a medida que aprovechen al máximo las capacidades de sus bases de datos Oracle.",
+    "price": "Desde $10,000",
+    "image": "https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_1280.jpg",
+    "features": [
+      "Análisis de requerimientos",
+      "Diseño arquitectónico",
+      "Desarrollo ágil",
+      "Pruebas exhaustivas",
+      "Integración con sistemas existentes"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Optimización de Rendimiento",
+    "description": "Mejore drásticamente el rendimiento de sus bases de datos existentes mediante análisis avanzado y técnicas de optimización.",
+    "price": "Desde $3,800",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlLkG1nEP2eedLAJ-SgKho442AK4Tprof6ww&s",
+    "features": [
+      "Análisis de cuellos de botella",
+      "Optimización de esquemas",
+      "Ajuste de consultas complejas",
+      "Configuración de índices",
+      "Recomendaciones de hardware"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Capacitación Técnica",
+    "description": "Programas de formación personalizados para su equipo técnico, desde fundamentos hasta administración avanzada de bases de datos Oracle.",
+    "price": "Desde $1,500/persona",
+    "image": "https://cdn.pixabay.com/photo/2018/01/17/07/06/laptop-3087585_1280.jpg",
+    "features": [
+      "Cursos adaptados a necesidades",
+      "Instructores certificados",
+      "Laboratorios prácticos",
+      "Material didáctico exclusivo",
+      "Evaluación de competencias"
+    ]
+  }
+]

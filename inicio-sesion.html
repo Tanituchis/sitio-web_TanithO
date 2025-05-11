@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<title>Inicio de Sesión</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #f4f4f5, #2575fc);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .login-container {
+    background: #ffffffdd;
+    padding: 30px 25px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+  }
+  .logo {
+    margin-bottom: 25px;
+  }
+  .logo img {
+    width: 130px;
+    max-width: 100%;
+    height: auto;
+  }
+  h1 {
+    margin: 0 0 20px;
+    font-weight: 700;
+    color: #333;
+    font-size: 1.75rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+  input[type="email"],
+  input[type="password"] {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1.8px solid #ddd;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    outline: none;
+    border-color: #2575fc;
+    box-shadow: 0 0 10px rgba(37,117,252,0.3);
+  }
+  button {
+    background-color: #2575fc;
+    border: none;
+    padding: 14px 0;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #1a51bf;
+  }
+  .message {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    min-height: 24px;
+  }
+  .message.error {
+    color: #e03e2f;
+  }
+  .message.success {
+    color: #28a745;
+  }
+  @media (max-width: 400px) {
+    .login-container {
+      padding: 24px 20px 32px;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+    button {
+      font-size: 1rem;
+    }
+  }
+</style>
+        </head>
+    <body>
+        <div class="login-container" role="main" aria-label="Formulario de inicio de sesión">
+     <div class="logo" aria-label="Logo de la empresa">
+    <img src="base de datos.png" alt="Logo de la empresa" />
+  </div>
+  <h1>Iniciar Sesión</h1>
+  <form id="loginForm" aria-describedby="loginMessage" novalidate>
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" autocomplete="username" placeholder="tucorreo@ejemplo.com" required aria-required="true" />
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Tu contraseña" required aria-required="true" />
+    <button type="submit" aria-label="Botón de iniciar sesión">Entrar</button>
+  </form>
+  <div class="message" id="loginMessage" role="alert" aria-live="polite"></div>
+</div>
+
+<script>
+  (function(){
+    'use strict';
+
+    const fakeUserDB = {
+      "tanith11@outlook.com": "password123"
+    };
+
+    const loginForm = document.getElementById('loginForm');
+    const loginMessage = document.getElementById('loginMessage');
+
+    loginForm.addEventListener('submit', function(event){
+      event.preventDefault();
+      loginMessage.textContent = '';
+      loginMessage.className = 'message';
+
+      const email = loginForm.email.value.trim().toLowerCase();
+      const password = loginForm.password.value;
+
+      if (!email || !password) {
+        loginMessage.textContent = 'Por favor, completa todos los campos.';
+        loginMessage.classList.add('error');
+        return;
+      }
+      if (fakeUserDB[email] && fakeUserDB[email] === password) {
+        loginMessage.textContent = '¡Inicio de sesión exitoso! Redirigiendo...';
+        loginMessage.classList.add('success');
+
+        setTimeout(() => {
+          loginMessage.textContent = '';
+          loginForm.reset();
+          alert('Bienvenido al sitio web BitNexo (Simulación)');
+        }, 1500);
+
+      } else {
+        loginMessage.textContent = 'Correo o contraseña incorrectos.';
+        loginMessage.classList.add('error');
+      }
+    });
+
+  })();
+</script>
+</body>
+</html>
+

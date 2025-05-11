@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OracleTech - Soluciones en Servidores y Bases de Datos</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fas fa-database"></i>
+            <h2>OracleTech</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+            <li><a href="servicios.html"><i class="fas fa-cogs"></i> <span>Servicios</span></a></li>
+            <li><a href="productos.html"><i class="fas fa-server"></i> <span>Productos</span></a></li>
+            <li><a href="historia.html"><i class="fas fa-history"></i> <span>Historia</span></a></li>
+            <li><a href="contacto.html"><i class="fas fa-envelope"></i> <span>Contacto</span></a></li>
+            <li><a href="usuario.html"><i class="fas fa-user"></i> <span>Mi cuenta</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Bienvenido a OracleTech</h1>
+            <div class="user-actions">
+                <!-- Se llenará dinámicamente con JS -->
+            </div>
+        </header>
+
+        <!-- Sección Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Soluciones empresariales de bases de datos y servidores</h1>
+                <p>Optimizamos el rendimiento de tus datos con soluciones personalizadas y tecnología de vanguardia.</p>
+                <div class="hero-buttons">
+                    <a href="productos.html" class="btn">Ver productos</a>
+                    <a href="contacto.html" class="btn btn-secondary">Solicitar demostración</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de características -->
+        <section class="section">
+            <h2 class="section-title">¿Por qué elegirnos?</h2>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Seguridad garantizada</h3>
+                    <p>Protección de datos avanzada con cifrado y auditorías continuas de seguridad.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Alto rendimiento</h3>
+                    <p>Servidores optimizados para ofrecer velocidad y eficiencia en cada operación.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Soluciones en la nube</h3>
+                    <p>Implementación flexible en la nube, en sus instalaciones o en modalidad híbrida.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <h3>Soporte 24/7</h3>
+                    <p>Equipo técnico especializado disponible en todo momento para resolver incidencias.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Productos destacados -->
+        <section class="section">
+            <h2 class="section-title">Productos destacados</h2>
+            <div class="card-container" id="featured-products">
+                <!-- Se cargarán dinámicamente desde JS -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Servidor Oracle Database Enterprise Edition">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Servidor Oracle Database Enterprise Edition</h3>
+                        <p class="card-description">Solución de servidor de alta disponibilidad con administración avanzada de bases de datos relacionales.</p>
+                        <p class="card-price">$8,999</p>
+                        <a href="productos.html" class="btn">Ver detalles</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://images.pexels.com/photos/4508748/pexels-photo-4508748.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Oracle Database Cloud Service">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Oracle Database Cloud Service</h3>
+                        <p class="card-description">Servicio de base de datos en la nube con escalabilidad automática y alta disponibilidad.</p>
+                        <p class="card-price">$499/mes</p>
+                        <a href="productos.html" class="btn">Ver detalles</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Servidor de Desarrollo Oracle">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Servidor de Desarrollo Oracle</h3>
+                        <p class="card-description">Entorno de servidor optimizado para equipos de desarrollo con herramientas integradas.</p>
+                        <p class="card-price">$2,999</p>
+                        <a href="productos.html" class="btn">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios destacados -->
+        <section class="section">
+            <h2 class="section-title">Servicios especializados</h2>
+            <div class="card-container" id="featured-services">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://cdn.pixabay.com/photo/2017/07/10/23/43/question-mark-2492009_1280.jpg" alt="Consultoría en Bases de Datos">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Consultoría en Bases de Datos</h3>
+                        <p class="card-description">Nuestros expertos analizan su infraestructura actual y proponen soluciones optimizadas.</p>
+                        <p class="card-price">Desde $2,500</p>
+                        <a href="servicios.html" class="btn">Ver detalles</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="./assets/img/servidores.png" alt="Implementación de Servidores">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Implementación de Servidores</h3>
+                        <p class="card-description">Servicio completo de configuración e implementación de servidores Oracle.</p>
+                        <p class="card-price">Desde $5,000</p>
+                        <a href="servicios.html" class="btn">Ver detalles</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://cdn.pixabay.com/photo/2017/01/22/22/11/cloud-computing-2001090_1280.jpg" alt="Migración a la Nube">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Migración a la Nube</h3>
+                        <p class="card-description">Traslade sus bases de datos y aplicaciones a soluciones en la nube con mínimo tiempo de inactividad.</p>
+                        <p class="card-price">Desde $8,000</p>
+                        <a href="servicios.html" class="btn">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clientes satisfechos -->
+        <section class="section">
+            <h2 class="section-title">Clientes que confían en nosotros</h2>
+            <div class="client-logos">
+                <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=150&h=80" alt="Cliente 1">
+                <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=150&h=80" alt="Cliente 2">
+                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=80" alt="Cliente 3">
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>OracleTech</h3>
+                    <p>Expertos en soluciones de bases de datos y servidores para empresas de todos los tamaños.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="historia.html">Historia</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Tecnológica 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@oracletech.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir noticias y ofertas exclusivas.</p>
+                    <form>
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit" class="btn">Suscribir</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2025 OracleTech. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

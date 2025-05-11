@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "name": "Servidor Oracle Database Enterprise Edition",
+    "description": "Solución de servidor de alta disponibilidad con administración avanzada de bases de datos relacionales, ideal para aplicaciones empresariales críticas.",
+    "price": 8999,
+    "category": "servidores",
+    "image": "https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "features": [
+      "Arquitectura escalable hasta 4096 núcleos",
+      "Administración de transacciones de alto rendimiento",
+      "Redundancia integrada",
+      "Copias de seguridad automatizadas",
+      "Configuración optimizada para cargas de trabajo empresariales"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Cluster Oracle RAC",
+    "description": "Solución de clústeres de bases de datos para disponibilidad continua y escalabilidad horizontal en entornos críticos.",
+    "price": 12999,
+    "category": "servidores",
+    "image": "https://cdn.pixabay.com/photo/2016/06/03/13/57/digital-transformation-1433427_1280.jpg",
+    "features": [
+      "Alta disponibilidad 99.999%",
+      "Escalabilidad horizontal con múltiples nodos",
+      "Recuperación ante desastres",
+      "Balanceo de carga integrado",
+      "Mantenimiento sin tiempo de inactividad"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Oracle Database Cloud Service",
+    "description": "Servicio de base de datos en la nube totalmente administrado con escalabilidad automática y alta disponibilidad.",
+    "price": 499,
+    "category": "cloud",
+    "image": "https://images.pexels.com/photos/4508748/pexels-photo-4508748.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "features": [
+      "Escalado automático según demanda",
+      "Respaldos diarios automatizados",
+      "Configuración en minutos",
+      "Monitoreo integrado 24/7",
+      "Pago por uso mensual"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Servidor de Análisis Empresarial",
+    "description": "Solución optimizada para análisis de datos masivos y almacenamiento inteligente con capacidades avanzadas de BI.",
+    "price": 7499,
+    "category": "servidores",
+    "image": "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "features": [
+      "Procesamiento en memoria optimizado",
+      "Análisis predictivo incorporado",
+      "Dashboards interactivos",
+      "Integración con herramientas de BI",
+      "Modelado de datos multidimensional"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Servidor de Aplicaciones Oracle WebLogic",
+    "description": "Plataforma empresarial para aplicaciones Java EE con alta disponibilidad y características avanzadas de administración.",
+    "price": 5999,
+    "category": "servidores",
+    "image": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "features": [
+      "Optimizado para microservicios",
+      "Clustering integrado",
+      "Administración centralizada",
+      "Seguridad empresarial",
+      "Integración con sistemas Legacy"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Oracle TimesTen Database",
+    "description": "Base de datos en memoria de alto rendimiento para aplicaciones que requieren tiempos de respuesta extremadamente bajos.",
+    "price": 4599,
+    "category": "bases_de_datos",
+    "image": "https://cdn.pixabay.com/photo/2018/05/16/18/16/cloud-3406627_1280.jpg",
+    "features": [
+      "Respuesta en microsegundos",
+      "Persistencia garantizada",
+      "Optimizado para aplicaciones financieras",
+      "Replicación continua",
+      "Integración con Oracle Database"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Servidor de Desarrollo Oracle",
+    "description": "Entorno de servidor optimizado para equipos de desarrollo con herramientas de colaboración integradas.",
+    "price": 2999,
+    "category": "servidores",
+    "image": "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "features": [
+      "Entornos de desarrollo preconfigurados",
+      "Integración con Git y DevOps",
+      "Herramientas de testing automatizado",
+      "Despliegue con un clic",
+      "Entornos aislados para desarrolladores"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Oracle MySQL Enterprise Edition",
+    "description": "Servidor de base de datos MySQL empresarial con herramientas avanzadas de administración y monitoreo.",
+    "price": 1999,
+    "category": "bases_de_datos",
+    "image": "https://cdn.pixabay.com/photo/2017/06/14/16/20/network-2402637_1280.jpg",
+    "features": [
+      "Herramientas de monitoreo avanzadas",
+      "Respaldos en caliente",
+      "Alta disponibilidad",
+      "Seguridad empresarial",
+      "Soporte 24/7"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Oracle Big Data Appliance",
+    "description": "Solución integrada para el procesamiento y análisis de grandes volúmenes de datos estructurados y no estructurados.",
+    "price": 15999,
+    "category": "servidores",
+    "image": "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "features": [
+      "Configuración optimizada para Hadoop",
+      "Procesamiento distribuido",
+      "Análisis de datos no estructurados",
+      "Integración con ecosistema Big Data",
+      "Capacidad de almacenamiento masivo"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Oracle Database Lite",
+    "description": "Solución de base de datos para dispositivos móviles y aplicaciones con conectividad intermitente.",
+    "price": 999,
+    "category": "bases_de_datos",
+    "image": "https://images.pexels.com/photos/3861976/pexels-photo-3861976.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "features": [
+      "Sincronización bidireccional",
+      "Bajo consumo de recursos",
+      "Funcionamiento offline",
+      "Optimizado para dispositivos móviles",
+      "Gestión centralizada de dispositivos"
+    ]
+  }
+]

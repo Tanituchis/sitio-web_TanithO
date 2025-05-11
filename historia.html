@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia - OracleTech</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fas fa-database"></i>
+            <h2>OracleTech</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+            <li><a href="servicios.html"><i class="fas fa-cogs"></i> <span>Servicios</span></a></li>
+            <li><a href="productos.html"><i class="fas fa-server"></i> <span>Productos</span></a></li>
+            <li><a href="historia.html" class="active"><i class="fas fa-history"></i> <span>Historia</span></a></li>
+            <li><a href="contacto.html"><i class="fas fa-envelope"></i> <span>Contacto</span></a></li>
+            <li><a href="usuario.html"><i class="fas fa-user"></i> <span>Mi cuenta</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Nuestra Historia</h1>
+            <div class="user-actions">
+                <!-- Se llenará dinámicamente con JS -->
+            </div>
+        </header>
+
+        <!-- Introducción a la historia -->
+        <section class="section">
+            <h2 class="section-title">Trayectoria de Innovación Tecnológica</h2>
+            <p>Desde nuestra fundación en 1995, OracleTech ha estado a la vanguardia de las soluciones de bases de datos y servidores empresariales. Nuestra historia es un testimonio de nuestro compromiso con la excelencia, la innovación y el servicio al cliente.</p>
+            <p>A lo largo de más de tres décadas, hemos evolucionado constantemente para adaptarnos a las necesidades cambiantes del mercado tecnológico, manteniendo siempre nuestros valores fundamentales: integridad, innovación y excelencia en el servicio.</p>
+            
+            <div class="company-stats" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; text-align: center;">
+                <div class="stat-item" style="background: var(--white); padding: 20px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <div class="stat-number" style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">30+</div>
+                    <div class="stat-label">Años de experiencia</div>
+                </div>
+                <div class="stat-item" style="background: var(--white); padding: 20px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <div class="stat-number" style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">500+</div>
+                    <div class="stat-label">Clientes satisfechos</div>
+                </div>
+                <div class="stat-item" style="background: var(--white); padding: 20px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <div class="stat-number" style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">15</div>
+                    <div class="stat-label">Países con presencia</div>
+                </div>
+                <div class="stat-item" style="background: var(--white); padding: 20px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <div class="stat-number" style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">12</div>
+                    <div class="stat-label">Premios de innovación</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Línea de tiempo -->
+        <section class="section">
+            <h2 class="section-title">Línea de tiempo</h2>
+            <div class="timeline" id="company-timeline">
+                <!-- Se llenará dinámicamente desde el archivo JSON -->
+            </div>
+        </section>
+
+        <!-- Nuestro equipo -->
+        <section class="section">
+            <h2 class="section-title">Nuestro Equipo Directivo</h2>
+            <div class="team-members" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px;">
+                <div class="team-member" style="background: var(--white); border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow);">
+                    <div class="member-image" style="height: 250px; overflow: hidden;">
+                        <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=500" alt="CEO" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="member-info" style="padding: 20px;">
+                        <h3 style="margin-bottom: 5px; color: var(--primary-color);">Juan Carlos Martínez</h3>
+                        <p style="color: var(--light-text); margin-bottom: 10px;">CEO y Fundador</p>
+                        <p>Con más de 30 años de experiencia en tecnología, Juan Carlos ha liderado OracleTech desde su fundación con visión y determinación.</p>
+                        <div class="member-social" style="margin-top: 15px;">
+                            <a href="#" style="color: var(--primary-color); margin-right: 10px;"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" style="color: var(--primary-color); margin-right: 10px;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="color: var(--primary-color);"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member" style="background: var(--white); border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow);">
+                    <div class="member-image" style="height: 250px; overflow: hidden;">
+                        <img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=500" alt="CTO" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="member-info" style="padding: 20px;">
+                        <h3 style="margin-bottom: 5px; color: var(--primary-color);">Elena Rodríguez</h3>
+                        <p style="color: var(--light-text); margin-bottom: 10px;">Directora de Tecnología</p>
+                        <p>Especialista en bases de datos y arquitectura de servidores, Elena lidera nuestro departamento técnico con innovación y excelencia.</p>
+                        <div class="member-social" style="margin-top: 15px;">
+                            <a href="#" style="color: var(--primary-color); margin-right: 10px;"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" style="color: var(--primary-color); margin-right: 10px;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="color: var(--primary-color);"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member" style="background: var(--white); border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow);">
+                    <div class="member-image" style="height: 250px; overflow: hidden;">
+                        <img src="https://images.pexels.com/photos/834863/pexels-photo-834863.jpeg?auto=compress&cs=tinysrgb&w=500" alt="COO" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="member-info" style="padding: 20px;">
+                        <h3 style="margin-bottom: 5px; color: var(--primary-color);">Ricardo Mendoza</h3>
+                        <p style="color: var(--light-text); margin-bottom: 10px;">Director de Operaciones</p>
+                        <p>Con amplia experiencia en gestión empresarial, Ricardo supervisa todas las operaciones para garantizar un servicio de alta calidad.</p>
+                        <div class="member-social" style="margin-top: 15px;">
+                            <a href="#" style="color: var(--primary-color); margin-right: 10px;"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" style="color: var(--primary-color); margin-right: 10px;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="color: var(--primary-color);"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member" style="background: var(--white); border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow);">
+                    <div class="member-image" style="height: 250px; overflow: hidden;">
+                        <img src="https://images.pexels.com/photos/871495/pexels-photo-871495.jpeg?auto=compress&cs=tinysrgb&w=500" alt="CFO" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="member-info" style="padding: 20px;">
+                        <h3 style="margin-bottom: 5px; color: var(--primary-color);">Ana Gómez</h3>
+                        <p style="color: var(--light-text); margin-bottom: 10px;">Directora Financiera</p>
+                        <p>Experta en finanzas corporativas, Ana ha sido clave en la gestión financiera y el crecimiento sostenible de OracleTech.</p>
+                        <div class="member-social" style="margin-top: 15px;">
+                            <a href="#" style="color: var(--primary-color); margin-right: 10px;"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" style="color: var(--primary-color); margin-right: 10px;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="color: var(--primary-color);"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Misión, Visión y Valores -->
+        <section class="section">
+            <h2 class="section-title">Nuestra filosofía</h2>
+            <div class="philosophy-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;">
+                <div class="philosophy-item" style="background: var(--white); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; text-align: center;">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 style="text-align: center; margin-bottom: 15px; font-size: 1.5rem;">Misión</h3>
+                    <p>Proporcionar soluciones tecnológicas innovadoras y de alta calidad que permitan a nuestros clientes optimizar sus procesos de gestión de datos, impulsando su crecimiento y competitividad en un mundo digital en constante evolución.</p>
+                </div>
+                <div class="philosophy-item" style="background: var(--white); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; text-align: center;">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 style="text-align: center; margin-bottom: 15px; font-size: 1.5rem;">Visión</h3>
+                    <p>Ser reconocidos globalmente como líderes en soluciones de bases de datos y servidores, destacando por nuestra excelencia técnica, innovación continua y compromiso inquebrantable con la satisfacción de nuestros clientes.</p>
+                </div>
+                <div class="philosophy-item" style="background: var(--white); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; text-align: center;">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 style="text-align: center; margin-bottom: 15px; font-size: 1.5rem;">Valores</h3>
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li style="margin-bottom: 10px;"><strong>Integridad:</strong> Actuamos con honestidad y transparencia en todas nuestras interacciones.</li>
+                        <li style="margin-bottom: 10px;"><strong>Innovación:</strong> Buscamos constantemente nuevas formas de mejorar y evolucionar.</li>
+                        <li style="margin-bottom: 10px;"><strong>Excelencia:</strong> Nos esforzamos por superar las expectativas en todo lo que hacemos.</li>
+                        <li style="margin-bottom: 10px;"><strong>Colaboración:</strong> Trabajamos juntos, tanto internamente como con nuestros clientes.</li>
+                        <li><strong>Responsabilidad:</strong> Asumimos el compromiso con nuestros clientes, empleados y la sociedad.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>OracleTech</h3>
+                    <p>Expertos en soluciones de bases de datos y servidores para empresas de todos los tamaños.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="historia.html">Historia</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Tecnológica 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@oracletech.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir noticias y ofertas exclusivas.</p>
+                    <form>
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit" class="btn">Suscribir</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2025 OracleTech. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Cargar historia desde JSON
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('assets/data/history.json')
+                .then(response => response.json())
+                .then(historyData => {
+                    displayTimeline(historyData);
+                })
+                .catch(error => console.error('Error cargando historia:', error));
+        });
+
+        function displayTimeline(historyData) {
+            const timelineContainer = document.getElementById('company-timeline');
+            let html = '';
+            
+            historyData.forEach((item, index) => {
+                html += `
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="timeline-year">${item.year}</h3>
+                            <h4>${item.title}</h4>
+                            <p>${item.description}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            timelineContainer.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

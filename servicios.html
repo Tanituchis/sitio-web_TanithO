@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - OracleTech</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fas fa-database"></i>
+            <h2>OracleTech</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+            <li><a href="servicios.html" class="active"><i class="fas fa-cogs"></i> <span>Servicios</span></a></li>
+            <li><a href="productos.html"><i class="fas fa-server"></i> <span>Productos</span></a></li>
+            <li><a href="historia.html"><i class="fas fa-history"></i> <span>Historia</span></a></li>
+            <li><a href="contacto.html"><i class="fas fa-envelope"></i> <span>Contacto</span></a></li>
+            <li><a href="usuario.html"><i class="fas fa-user"></i> <span>Mi cuenta</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Nuestros Servicios</h1>
+            <div class="user-actions">
+                <!-- Se llenará dinámicamente con JS -->
+            </div>
+        </header>
+
+        <!-- Introducción a servicios -->
+        <section class="section">
+            <h2 class="section-title">Soluciones personalizadas para su empresa</h2>
+            <p>En OracleTech ofrecemos una gama completa de servicios profesionales diseñados para optimizar su infraestructura de datos. Nuestro equipo de expertos certificados trabaja con usted para entender sus necesidades específicas y desarrollar soluciones que impulsen el crecimiento de su negocio.</p>
+            
+            <div class="service-categories" style="margin-top: 20px; display: flex; gap: 15px;">
+                <button class="btn active" data-category="all">Todos</button>
+                <button class="btn" data-category="consulting">Consultoría</button>
+                <button class="btn" data-category="implementation">Implementación</button>
+                <button class="btn" data-category="support">Soporte</button>
+                <button class="btn" data-category="training">Capacitación</button>
+            </div>
+        </section>
+
+        <!-- Listado de servicios -->
+        <section class="services-container" id="services-list">
+            <!-- Se llenará dinámicamente desde el archivo JSON -->
+        </section>
+
+        <!-- Proceso de servicio -->
+        <section class="section">
+            <h2 class="section-title">Nuestro proceso</h2>
+            <div class="process-steps" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div class="process-step" style="text-align: center;">
+                    <div class="step-number" style="background: var(--primary-color); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px auto; font-size: 1.5rem; font-weight: bold;">1</div>
+                    <h3>Diagnóstico</h3>
+                    <p>Evaluamos su situación actual y necesidades específicas para entender completamente su entorno tecnológico.</p>
+                </div>
+                <div class="process-step" style="text-align: center;">
+                    <div class="step-number" style="background: var(--primary-color); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px auto; font-size: 1.5rem; font-weight: bold;">2</div>
+                    <h3>Propuesta</h3>
+                    <p>Desarrollamos una solución personalizada y le presentamos una propuesta detallada con opciones y recomendaciones.</p>
+                </div>
+                <div class="process-step" style="text-align: center;">
+                    <div class="step-number" style="background: var(--primary-color); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px auto; font-size: 1.5rem; font-weight: bold;">3</div>
+                    <h3>Implementación</h3>
+                    <p>Nuestro equipo de expertos ejecuta la solución planificada, siguiendo las mejores prácticas y metodologías.</p>
+                </div>
+                <div class="process-step" style="text-align: center;">
+                    <div class="step-number" style="background: var(--primary-color); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px auto; font-size: 1.5rem; font-weight: bold;">4</div>
+                    <h3>Seguimiento</h3>
+                    <p>Proporcionamos soporte continuo, monitoreo y optimizaciones periódicas para garantizar resultados duraderos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios -->
+        <section class="section">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <div class="testimonials" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="testimonial" style="background: var(--white); padding: 20px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <div class="quote" style="font-size: 1.2rem; font-style: italic; margin-bottom: 15px;">
+                        "La migración de nuestra base de datos a la nube fue perfecta, sin ningún tiempo de inactividad. El equipo de OracleTech demostró una profesionalidad excepcional."
+                    </div>
+                    <div class="author" style="display: flex; align-items: center;">
+                        <div class="author-image" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; margin-right: 15px;">
+                            <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=50" alt="Cliente" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="author-info">
+                            <h4 style="margin: 0;">Carlos Rodríguez</h4>
+                            <p style="margin: 0; color: var(--light-text);">CTO, Empresa Tecnológica S.A.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial" style="background: var(--white); padding: 20px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <div class="quote" style="font-size: 1.2rem; font-style: italic; margin-bottom: 15px;">
+                        "Gracias a la consultoría en optimización de bases de datos, hemos reducido nuestros tiempos de respuesta en un 70%. Una inversión que vale la pena."
+                    </div>
+                    <div class="author" style="display: flex; align-items: center;">
+                        <div class="author-image" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; margin-right: 15px;">
+                            <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=50" alt="Cliente" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="author-info">
+                            <h4 style="margin: 0;">María González</h4>
+                            <p style="margin: 0; color: var(--light-text);">Gerente de IT, Finanzas Globales</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial" style="background: var(--white); padding: 20px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <div class="quote" style="font-size: 1.2rem; font-style: italic; margin-bottom: 15px;">
+                        "La capacitación que recibió nuestro equipo técnico fue excepcional. Ahora tenemos la confianza para administrar nuestros sistemas internamente."
+                    </div>
+                    <div class="author" style="display: flex; align-items: center;">
+                        <div class="author-image" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; margin-right: 15px;">
+                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=50" alt="Cliente" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="author-info">
+                            <h4 style="margin: 0;">Jorge Méndez</h4>
+                            <p style="margin: 0; color: var(--light-text);">Director de Operaciones, Retail Express</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Llamada a la acción -->
+        <section class="section" style="background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); color: white; text-align: center; padding: 40px;">
+            <h2 style="margin-bottom: 20px;">¿Listo para optimizar su infraestructura de datos?</h2>
+            <p style="margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">Contáctenos hoy mismo para una consulta gratuita y descubra cómo podemos ayudarle a alcanzar sus objetivos tecnológicos.</p>
+            <a href="contacto.html" class="btn btn-secondary" style="background: white; color: var(--primary-color);">Solicitar consulta</a>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>OracleTech</h3>
+                    <p>Expertos en soluciones de bases de datos y servidores para empresas de todos los tamaños.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="historia.html">Historia</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Tecnológica 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@oracletech.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir noticias y ofertas exclusivas.</p>
+                    <form>
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit" class="btn">Suscribir</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2025 OracleTech. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Cargar servicios desde JSON
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('assets/data/services.json')
+                .then(response => response.json())
+                .then(services => {
+                    displayServices(services);
+                    setupCategoryFilters();
+                })
+                .catch(error => console.error('Error cargando servicios:', error));
+        });
+
+        function displayServices(services) {
+            const servicesContainer = document.getElementById('services-list');
+            let html = '';
+            
+            services.forEach(service => {
+                html += `
+                    <div class="section service-item" data-category="${getServiceCategory(service.name)}">
+                        <div style="display: grid; grid-template-columns: 1fr 3fr; gap: 30px;">
+                            <div class="service-image">
+                                <img src="${service.image}" alt="${service.name}" style="width: 100%; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                            </div>
+                            <div class="service-content">
+                                <h3 class="service-title" style="font-size: 1.8rem; color: var(--primary-color); margin-bottom: 10px;">${service.name}</h3>
+                                <p class="service-price" style="font-size: 1.2rem; color: var(--accent-color); font-weight: 600; margin-bottom: 15px;">${service.price}</p>
+                                <p class="service-description" style="margin-bottom: 20px;">${service.description}</p>
+                                <div class="service-features">
+                                    <h4 style="margin-bottom: 10px;">Características principales:</h4>
+                                    <ul style="list-style-type: none; padding: 0;">
+                                        ${service.features.map(feature => `<li style="margin-bottom: 5px;"><i class="fas fa-check-circle" style="color: var(--primary-color); margin-right: 10px;"></i>${feature}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div style="margin-top: 20px;">
+                                    <a href="contacto.html" class="btn">Solicitar información</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            servicesContainer.innerHTML = html;
+        }
+
+        function getServiceCategory(serviceName) {
+            // Asignar categorías según el nombre del servicio (simplificado)
+            if (serviceName.includes('Consultoría') || serviceName.includes('Optimización')) {
+                return 'consulting';
+            } else if (serviceName.includes('Implementación') || serviceName.includes('Migración')) {
+                return 'implementation';
+            } else if (serviceName.includes('Monitoreo') || serviceName.includes('Recuperación')) {
+                return 'support';
+            } else if (serviceName.includes('Capacitación')) {
+                return 'training';
+            }
+            return 'other';
+        }
+
+        function setupCategoryFilters() {
+            const categoryButtons = document.querySelectorAll('.service-categories .btn');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Quitar clase activa de todos los botones
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Agregar clase activa al botón clicado
+                    this.classList.add('active');
+                    
+                    // Filtrar servicios
+                    const category = this.getAttribute('data-category');
+                    filterServices(category);
+                });
+            });
+        }
+
+        function filterServices(category) {
+            const services = document.querySelectorAll('.service-item');
+            
+            services.forEach(service => {
+                if (category === 'all' || service.getAttribute('data-category') === category) {
+                    service.style.display = 'block';
+                } else {
+                    service.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

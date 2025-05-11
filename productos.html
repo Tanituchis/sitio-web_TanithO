@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - OracleTech</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fas fa-database"></i>
+            <h2>OracleTech</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+            <li><a href="servicios.html"><i class="fas fa-cogs"></i> <span>Servicios</span></a></li>
+            <li><a href="productos.html" class="active"><i class="fas fa-server"></i> <span>Productos</span></a></li>
+            <li><a href="historia.html"><i class="fas fa-history"></i> <span>Historia</span></a></li>
+            <li><a href="contacto.html"><i class="fas fa-envelope"></i> <span>Contacto</span></a></li>
+            <li><a href="usuario.html"><i class="fas fa-user"></i> <span>Mi cuenta</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Catálogo de Productos</h1>
+            <div class="user-actions">
+                <!-- Se llenará dinámicamente con JS -->
+            </div>
+        </header>
+
+        <!-- Filtros de productos -->
+        <section class="section">
+            <div class="product-filters" style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center; margin-bottom: 20px;">
+                <div class="filter-group">
+                    <label for="category-filter">Categoría:</label>
+                    <select id="category-filter" class="filter-select">
+                        <option value="all">Todas</option>
+                        <option value="servidores">Servidores</option>
+                        <option value="bases_de_datos">Bases de datos</option>
+                        <option value="cloud">Cloud</option>
+                        <option value="software">Software</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-filter">Precio:</label>
+                    <select id="price-filter" class="filter-select">
+                        <option value="all">Todos</option>
+                        <option value="low">Menos de $1,000</option>
+                        <option value="medium">$1,000 - $5,000</option>
+                        <option value="high">$5,000 - $10,000</option>
+                        <option value="premium">Más de $10,000</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sort-filter">Ordenar por:</label>
+                    <select id="sort-filter" class="filter-select">
+                        <option value="name-asc">Nombre (A-Z)</option>
+                        <option value="name-desc">Nombre (Z-A)</option>
+                        <option value="price-asc">Precio (menor a mayor)</option>
+                        <option value="price-desc">Precio (mayor a menor)</option>
+                    </select>
+                </div>
+                <div class="filter-group" style="margin-left: auto;">
+                    <div class="search-box">
+                        <input type="text" id="search-products" placeholder="Buscar productos...">
+                        <button type="button" id="search-button" class="btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Listado de productos -->
+        <section class="products-container">
+            <div class="card-container" id="products-list">
+                <!-- Se llenará dinámicamente desde el archivo JSON -->
+            </div>
+        </section>
+
+        <!-- Paginación -->
+        <div class="pagination" style="display: flex; justify-content: center; margin: 30px 0;">
+            <button class="btn pagination-prev" disabled><i class="fas fa-chevron-left"></i> Anterior</button>
+            <div class="pagination-numbers" style="display: flex; margin: 0 15px;">
+                <button class="btn active">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+            </div>
+            <button class="btn pagination-next">Siguiente <i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <!-- Comparativa de productos -->
+        <section class="section">
+            <h2 class="section-title">Comparativa de productos</h2>
+            <p style="margin-bottom: 20px;">Seleccione hasta 3 productos para compararlos y encontrar la solución que mejor se adapte a sus necesidades.</p>
+            
+            <div id="comparison-container" style="display: none; margin-top: 30px;">
+                <div class="comparison-table-container" style="overflow-x: auto;">
+                    <table class="comparison-table" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; padding: 15px; background: var(--primary-color); color: white;">Característica</th>
+                                <th style="text-align: center; padding: 15px; background: var(--primary-color); color: white;" id="product1-name">Producto 1</th>
+                                <th style="text-align: center; padding: 15px; background: var(--primary-color); color: white;" id="product2-name">Producto 2</th>
+                                <th style="text-align: center; padding: 15px; background: var(--primary-color); color: white;" id="product3-name">Producto 3</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparison-table-body">
+                            <!-- Se llenará dinámicamente desde JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button id="reset-comparison" class="btn btn-secondary">Reiniciar comparación</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Llamada a la acción -->
+        <section class="section" style="background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); color: white; text-align: center; padding: 40px;">
+            <h2 style="margin-bottom: 20px;">¿Necesita ayuda para elegir el producto adecuado?</h2>
+            <p style="margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">Nuestros expertos pueden analizar sus requisitos y recomendarle la mejor solución para su empresa. Contáctenos para recibir asesoramiento personalizado.</p>
+            <a href="contacto.html" class="btn btn-secondary" style="background: white; color: var(--primary-color);">Solicitar asesoramiento</a>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>OracleTech</h3>
+                    <p>Expertos en soluciones de bases de datos y servidores para empresas de todos los tamaños.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="historia.html">Historia</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Tecnológica 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@oracletech.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir noticias y ofertas exclusivas.</p>
+                    <form>
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit" class="btn">Suscribir</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2025 OracleTech. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Función para mostrar notificaciones (copia de la función en main.js para uso local)
+        function showNotification(message, type = 'info') {
+            // Crear elemento de notificación
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            // Añadir al DOM
+            document.body.appendChild(notification);
+            
+            // Mostrar con animación
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+        
+        // Función mejorada para agregar productos al carrito
+        function addToCartHandler() {
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    
+                    // Obtener el producto del array local
+                    const product = allProducts.find(p => p.id === productId);
+                    
+                    if (product) {
+                        // Recuperar carrito existente
+                        let cart = [];
+                        const savedCart = localStorage.getItem('cart');
+                        if (savedCart) {
+                            cart = JSON.parse(savedCart);
+                        }
+                        
+                        // Verificar si el producto ya está en el carrito
+                        const existingItem = cart.find(item => item.id === productId);
+                        
+                        if (existingItem) {
+                            existingItem.quantity += 1;
+                        } else {
+                            cart.push({
+                                id: product.id,
+                                name: product.name,
+                                price: product.price,
+                                image: product.image,
+                                quantity: 1
+                            });
+                        }
+                        
+                        // Guardar en localStorage
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        
+                        // Actualizar contador del carrito si existe
+                        const cartCounter = document.querySelector('.cart-counter');
+                        if (cartCounter) {
+                            const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+                            cartCounter.textContent = itemCount;
+                            cartCounter.style.display = itemCount > 0 ? 'inline-flex' : 'none';
+                        }
+                        
+                        // Mostrar mensaje de éxito
+                        showNotification('Producto agregado al carrito', 'success');
+                    }
+                });
+            });
+        }
+        // Variables globales
+        let allProducts = [];
+        let filteredProducts = [];
+        let currentPage = 1;
+        const productsPerPage = 6;
+        let selectedProducts = [];
+
+        // Cargar productos desde JSON
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('assets/data/products.json')
+                .then(response => response.json())
+                .then(products => {
+                    allProducts = products;
+                    filteredProducts = [...allProducts];
+                    displayProducts();
+                    setupFilters();
+                    setupPagination();
+                    setupSearch();
+                    addToCartHandler(); // Agregar manejadores de eventos para botones de agregar al carrito
+                })
+                .catch(error => console.error('Error cargando productos:', error));
+        });
+
+        function displayProducts() {
+            const productsContainer = document.getElementById('products-list');
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+            
+            let html = '';
+            
+            paginatedProducts.forEach(product => {
+                html += `
+                    <div class="card product-card" data-id="${product.id}">
+                        <div class="card-image">
+                            <img src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">${product.name}</h3>
+                            <p class="card-description">${product.description}</p>
+                            <p class="card-price">$${product.price.toLocaleString()}</p>
+                            <div class="card-actions" style="display: flex; justify-content: space-between; align-items: center;">
+                                <a href="#" class="btn add-to-cart" data-id="${product.id}">Agregar al carrito</a>
+                                <a href="#" class="btn-compare" data-id="${product.id}" style="display: inline-flex; align-items: center; color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">
+                                    <i class="fas fa-exchange-alt" style="margin-right: 5px;"></i> Comparar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            if (paginatedProducts.length === 0) {
+                html = '<p style="text-align: center; width: 100%; padding: 30px;">No se encontraron productos que coincidan con los criterios de búsqueda.</p>';
+            }
+            
+            productsContainer.innerHTML = html;
+            
+            // Event listeners para botones de comparar
+            document.querySelectorAll('.btn-compare').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    toggleProductComparison(productId);
+                });
+            });
+        }
+
+        function setupFilters() {
+            // Filtro de categoría
+            const categoryFilter = document.getElementById('category-filter');
+            categoryFilter.addEventListener('change', applyFilters);
+            
+            // Filtro de precio
+            const priceFilter = document.getElementById('price-filter');
+            priceFilter.addEventListener('change', applyFilters);
+            
+            // Ordenamiento
+            const sortFilter = document.getElementById('sort-filter');
+            sortFilter.addEventListener('change', applyFilters);
+        }
+
+        function applyFilters() {
+            const categoryValue = document.getElementById('category-filter').value;
+            const priceValue = document.getElementById('price-filter').value;
+            const sortValue = document.getElementById('sort-filter').value;
+            const searchValue = document.getElementById('search-products').value.toLowerCase().trim();
+            
+            // Filtrar por categoría
+            filteredProducts = allProducts.filter(product => {
+                let passCategory = categoryValue === 'all' || product.category === categoryValue;
+                let passPrice = true;
+                
+                // Filtrar por precio
+                switch (priceValue) {
+                    case 'low':
+                        passPrice = product.price < 1000;
+                        break;
+                    case 'medium':
+                        passPrice = product.price >= 1000 && product.price < 5000;
+                        break;
+                    case 'high':
+                        passPrice = product.price >= 5000 && product.price < 10000;
+                        break;
+                    case 'premium':
+                        passPrice = product.price >= 10000;
+                        break;
+                }
+                
+                // Filtrar por búsqueda
+                let passSearch = true;
+                if (searchValue) {
+                    passSearch = 
+                        product.name.toLowerCase().includes(searchValue) || 
+                        product.description.toLowerCase().includes(searchValue);
+                }
+                
+                return passCategory && passPrice && passSearch;
+            });
+            
+            // Ordenar productos
+            switch (sortValue) {
+                case 'name-asc':
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'name-desc':
+                    filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                case 'price-asc':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+            }
+            
+            // Resetear a la primera página
+            currentPage = 1;
+            
+            // Actualizar la visualización
+            displayProducts();
+            setupPagination();
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('search-products');
+            const searchButton = document.getElementById('search-button');
+            
+            // Buscar al hacer clic en el botón
+            searchButton.addEventListener('click', applyFilters);
+            
+            // Buscar al presionar Enter
+            searchInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    applyFilters();
+                }
+            });
+        }
+
+        function setupPagination() {
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+            const paginationNumbers = document.querySelector('.pagination-numbers');
+            const prevButton = document.querySelector('.pagination-prev');
+            const nextButton = document.querySelector('.pagination-next');
+            
+            // Crear botones de paginación
+            let paginationHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML += `<button class="btn ${i === currentPage ? 'active' : ''}">${i}</button>`;
+            }
+            
+            if (totalPages === 0) {
+                paginationHTML = '<button class="btn active">1</button>';
+            }
+            
+            paginationNumbers.innerHTML = paginationHTML;
+            
+            // Habilitar/deshabilitar botones de anterior/siguiente
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === totalPages || totalPages === 0;
+            
+            // Event listeners para botones de paginación
+            document.querySelectorAll('.pagination-numbers .btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    currentPage = parseInt(this.textContent);
+                    displayProducts();
+                    setupPagination();
+                });
+            });
+            
+            // Event listeners para botones anterior/siguiente
+            prevButton.addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayProducts();
+                    setupPagination();
+                }
+            });
+            
+            nextButton.addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayProducts();
+                    setupPagination();
+                }
+            });
+        }
+
+        function toggleProductComparison(productId) {
+            // Comprobar si el producto ya está seleccionado
+            const index = selectedProducts.indexOf(productId);
+            
+            if (index !== -1) {
+                // Quitar de la selección
+                selectedProducts.splice(index, 1);
+                document.querySelector(`.btn-compare[data-id="${productId}"]`).classList.remove('active');
+            } else {
+                // Añadir a la selección si hay menos de 3 productos seleccionados
+                if (selectedProducts.length < 3) {
+                    selectedProducts.push(productId);
+                    document.querySelector(`.btn-compare[data-id="${productId}"]`).classList.add('active');
+                } else {
+                    showNotification('Solo puede comparar hasta 3 productos a la vez.', 'error');
+                    return;
+                }
+            }
+            
+            // Actualizar la tabla de comparación
+            updateComparisonTable();
+        }
+
+        function updateComparisonTable() {
+            const comparisonContainer = document.getElementById('comparison-container');
+            
+            if (selectedProducts.length < 2) {
+                comparisonContainer.style.display = 'none';
+                return;
+            }
+            
+            comparisonContainer.style.display = 'block';
+            
+            // Obtener los productos seleccionados
+            const productsToCompare = allProducts.filter(product => selectedProducts.includes(product.id));
+            
+            // Actualizar encabezados con nombres de productos
+            for (let i = 0; i < 3; i++) {
+                const headerElement = document.getElementById(`product${i+1}-name`);
+                if (i < productsToCompare.length) {
+                    headerElement.textContent = productsToCompare[i].name;
+                    headerElement.style.display = '';
+                } else {
+                    headerElement.style.display = 'none';
+                }
+            }
+            
+            // Construir filas de la tabla
+            const tableBody = document.getElementById('comparison-table-body');
+            let tableHTML = '';
+            
+            // Fila de imagen
+            tableHTML += '<tr>';
+            tableHTML += '<td style="padding: 15px; border-bottom: 1px solid #eee; font-weight: bold;">Imagen</td>';
+            
+            for (let i = 0; i < 3; i++) {
+                if (i < productsToCompare.length) {
+                    tableHTML += `
+                        <td style="padding: 15px; border-bottom: 1px solid #eee; text-align: center;">
+                            <img src="${productsToCompare[i].image}" alt="${productsToCompare[i].name}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px;">
+                        </td>
+                    `;
+                } else {
+                    tableHTML += '<td style="display: none;"></td>';
+                }
+            }
+            
+            tableHTML += '</tr>';
+            
+            // Fila de precio
+            tableHTML += '<tr>';
+            tableHTML += '<td style="padding: 15px; border-bottom: 1px solid #eee; font-weight: bold;">Precio</td>';
+            
+            for (let i = 0; i < 3; i++) {
+                if (i < productsToCompare.length) {
+                    tableHTML += `
+                        <td style="padding: 15px; border-bottom: 1px solid #eee; text-align: center; font-weight: bold; color: var(--accent-color);">
+                            $${productsToCompare[i].price.toLocaleString()}
+                        </td>
+                    `;
+                } else {
+                    tableHTML += '<td style="display: none;"></td>';
+                }
+            }
+            
+            tableHTML += '</tr>';
+            
+            // Fila de descripción
+            tableHTML += '<tr>';
+            tableHTML += '<td style="padding: 15px; border-bottom: 1px solid #eee; font-weight: bold;">Descripción</td>';
+            
+            for (let i = 0; i < 3; i++) {
+                if (i < productsToCompare.length) {
+                    tableHTML += `
+                        <td style="padding: 15px; border-bottom: 1px solid #eee; text-align: center;">
+                            ${productsToCompare[i].description}
+                        </td>
+                    `;
+                } else {
+                    tableHTML += '<td style="display: none;"></td>';
+                }
+            }
+            
+            tableHTML += '</tr>';
+            
+            // Filas para características
+            tableHTML += '<tr>';
+            tableHTML += '<td style="padding: 15px; border-bottom: 1px solid #eee; font-weight: bold;">Características</td>';
+            
+            for (let i = 0; i < 3; i++) {
+                if (i < productsToCompare.length) {
+                    tableHTML += `
+                        <td style="padding: 15px; border-bottom: 1px solid #eee; text-align: center;">
+                            <ul style="list-style-type: none; padding: 0; text-align: left;">
+                                ${productsToCompare[i].features.map(feature => `<li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: green; margin-right: 5px;"></i>${feature}</li>`).join('')}
+                            </ul>
+                        </td>
+                    `;
+                } else {
+                    tableHTML += '<td style="display: none;"></td>';
+                }
+            }
+            
+            tableHTML += '</tr>';
+            
+            // Fila de acciones
+            tableHTML += '<tr>';
+            tableHTML += '<td style="padding: 15px; font-weight: bold;">Acciones</td>';
+            
+            for (let i = 0; i < 3; i++) {
+                if (i < productsToCompare.length) {
+                    tableHTML += `
+                        <td style="padding: 15px; text-align: center;">
+                            <a href="#" class="btn add-to-cart" data-id="${productsToCompare[i].id}">Agregar al carrito</a>
+                        </td>
+                    `;
+                } else {
+                    tableHTML += '<td style="display: none;"></td>';
+                }
+            }
+            
+            tableHTML += '</tr>';
+            
+            tableBody.innerHTML = tableHTML;
+            
+            // Event listener para el botón de reiniciar comparación
+            document.getElementById('reset-comparison').addEventListener('click', function() {
+                selectedProducts = [];
+                document.querySelectorAll('.btn-compare').forEach(button => {
+                    button.classList.remove('active');
+                });
+                comparisonContainer.style.display = 'none';
+            });
+            
+            // Agregar event listeners para los botones de agregar al carrito en la tabla de comparación
+            document.querySelectorAll('.comparison-table .add-to-cart').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    // Usar la función addToCartHandler para mantener la consistencia
+                    const product = allProducts.find(p => p.id === productId);
+                    if (product) {
+                        // Recuperar carrito existente
+                        let cart = [];
+                        const savedCart = localStorage.getItem('cart');
+                        if (savedCart) {
+                            cart = JSON.parse(savedCart);
+                        }
+                        
+                        // Verificar si el producto ya está en el carrito
+                        const existingItem = cart.find(item => item.id === productId);
+                        
+                        if (existingItem) {
+                            existingItem.quantity += 1;
+                        } else {
+                            cart.push({
+                                id: product.id,
+                                name: product.name,
+                                price: product.price,
+                                image: product.image,
+                                quantity: 1
+                            });
+                        }
+                        
+                        // Guardar en localStorage
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        
+                        // Actualizar contador del carrito si existe
+                        const cartCounter = document.querySelector('.cart-counter');
+                        if (cartCounter) {
+                            const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+                            cartCounter.textContent = itemCount;
+                            cartCounter.style.display = itemCount > 0 ? 'inline-flex' : 'none';
+                        }
+                        
+                        // Mostrar mensaje de éxito
+                        showNotification('Producto agregado al carrito', 'success');
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

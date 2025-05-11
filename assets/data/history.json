@@ -1,0 +1,62 @@
+[
+  {
+    "year": 1995,
+    "title": "Fundación de la empresa",
+    "description": "Nuestra compañía fue fundada por un grupo de visionarios expertos en tecnología de bases de datos, con la misión de proporcionar soluciones de almacenamiento de datos confiables para empresas en crecimiento."
+  },
+  {
+    "year": 1998,
+    "title": "Primer centro de datos",
+    "description": "Inauguramos nuestro primer centro de datos con tecnología de vanguardia, permitiéndonos ofrecer servicios de hosting y administración de bases de datos para clientes corporativos."
+  },
+  {
+    "year": 2002,
+    "title": "Alianza estratégica con Oracle",
+    "description": "Establecimos una alianza estratégica con Oracle Corporation que nos permitió convertirnos en distribuidor autorizado y centro certificado de capacitación para tecnologías Oracle."
+  },
+  {
+    "year": 2005,
+    "title": "Expansión internacional",
+    "description": "Comenzamos nuestra expansión internacional abriendo oficinas en países latinoamericanos y estableciendo alianzas con socios tecnológicos en Europa y Asia."
+  },
+  {
+    "year": 2008,
+    "title": "Certificación ISO 27001",
+    "description": "Obtuvimos la certificación ISO 27001 en gestión de seguridad de la información, reafirmando nuestro compromiso con la protección de los datos de nuestros clientes."
+  },
+  {
+    "year": 2010,
+    "title": "Lanzamiento de servicios en la nube",
+    "description": "Desarrollamos nuestra propia plataforma de servicios en la nube, permitiendo a nuestros clientes migrar sus bases de datos a entornos virtualizados de alta disponibilidad."
+  },
+  {
+    "year": 2013,
+    "title": "Centro de innovación tecnológica",
+    "description": "Inauguramos nuestro centro de innovación tecnológica, dedicado a la investigación y desarrollo de soluciones avanzadas para el manejo de datos empresariales."
+  },
+  {
+    "year": 2015,
+    "title": "Reconocimiento a la excelencia",
+    "description": "Fuimos reconocidos con el premio 'Partner of the Year' por Oracle, destacando nuestra excelencia en la implementación de soluciones de bases de datos empresariales."
+  },
+  {
+    "year": 2018,
+    "title": "Soluciones de Big Data",
+    "description": "Ampliamos nuestra oferta con soluciones especializadas en Big Data y análisis avanzado, ayudando a las empresas a extraer valor de sus grandes volúmenes de información."
+  },
+  {
+    "year": 2020,
+    "title": "Transformación digital",
+    "description": "Lanzamos nuestro programa de transformación digital para empresas, integrando inteligencia artificial y aprendizaje automático en nuestras soluciones de bases de datos."
+  },
+  {
+    "year": 2023,
+    "title": "Centro de seguridad de datos",
+    "description": "Establecimos un centro especializado en seguridad de datos con certificaciones internacionales, ofreciendo servicios avanzados de protección contra ciberamenazas."
+  },
+  {
+    "year": 2025,
+    "title": "Presente y futuro",
+    "description": "Hoy continuamos innovando y expandiendo nuestras soluciones, con un enfoque en la sostenibilidad y la eficiencia energética de nuestros centros de datos."
+  }
+]

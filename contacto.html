@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - OracleTech</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fas fa-database"></i>
+            <h2>OracleTech</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+            <li><a href="servicios.html"><i class="fas fa-cogs"></i> <span>Servicios</span></a></li>
+            <li><a href="productos.html"><i class="fas fa-server"></i> <span>Productos</span></a></li>
+            <li><a href="historia.html"><i class="fas fa-history"></i> <span>Historia</span></a></li>
+            <li><a href="contacto.html" class="active"><i class="fas fa-envelope"></i> <span>Contacto</span></a></li>
+            <li><a href="usuario.html"><i class="fas fa-user"></i> <span>Mi cuenta</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Contáctenos</h1>
+            <div class="user-actions">
+                <!-- Se llenará dinámicamente con JS -->
+            </div>
+        </header>
+
+        <!-- Información de contacto y formulario -->
+        <section class="section">
+            <div class="contact-container" style="display: grid; grid-template-columns: 1fr 2fr; gap: 30px;">
+                <!-- Información de contacto -->
+                <div class="contact-info">
+                    <h2 class="section-title">Información de contacto</h2>
+                    <p>Estamos a su disposición para proporcionarle información sobre nuestros productos y servicios. No dude en contactarnos.</p>
+                    
+                    <div class="contact-details" style="margin-top: 30px;">
+                        <div class="contact-item" style="display: flex; margin-bottom: 20px;">
+                            <div class="contact-icon" style="color: var(--primary-color); font-size: 1.5rem; margin-right: 15px;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 style="margin: 0 0 5px 0;">Dirección</h4>
+                                <p style="margin: 0;">Av. Tecnológica 123, Ciudad Empresarial<br>CP 12345, México</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item" style="display: flex; margin-bottom: 20px;">
+                            <div class="contact-icon" style="color: var(--primary-color); font-size: 1.5rem; margin-right: 15px;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 style="margin: 0 0 5px 0;">Teléfono</h4>
+                                <p style="margin: 0;">+52 (123) 456 7890</p>
+                                <p style="margin: 0;">+52 (123) 456 7891</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item" style="display: flex; margin-bottom: 20px;">
+                            <div class="contact-icon" style="color: var(--primary-color); font-size: 1.5rem; margin-right: 15px;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 style="margin: 0 0 5px 0;">Email</h4>
+                                <p style="margin: 0;">info@oracletech.com</p>
+                                <p style="margin: 0;">ventas@oracletech.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item" style="display: flex; margin-bottom: 20px;">
+                            <div class="contact-icon" style="color: var(--primary-color); font-size: 1.5rem; margin-right: 15px;">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 style="margin: 0 0 5px 0;">Horario de atención</h4>
+                                <p style="margin: 0;">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                                <p style="margin: 0;">Sábados: 9:00 AM - 1:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-media" style="margin-top: 30px;">
+                        <h4>Síguenos en redes sociales</h4>
+                        <div class="social-icons" style="display: flex; gap: 15px; margin-top: 10px;">
+                            <a href="#" style="color: var(--primary-color); font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" style="color: var(--primary-color); font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="color: var(--primary-color); font-size: 1.5rem;"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" style="color: var(--primary-color); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                            <a href="#" style="color: var(--primary-color); font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulario de contacto -->
+                <div class="contact-form-container">
+                    <h2 class="section-title">Envíenos un mensaje</h2>
+                    <p>Complete el siguiente formulario y nos pondremos en contacto con usted a la brevedad.</p>
+                    
+                    <form id="contact-form" class="contact-form" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label for="contact-name">Nombre completo *</label>
+                            <input type="text" id="contact-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-email">Correo electrónico *</label>
+                            <input type="email" id="contact-email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-phone">Teléfono</label>
+                            <input type="tel" id="contact-phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-company">Empresa</label>
+                            <input type="text" id="contact-company">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-subject">Asunto *</label>
+                            <select id="contact-subject" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="información_general">Información general</option>
+                                <option value="ventas">Ventas</option>
+                                <option value="soporte">Soporte técnico</option>
+                                <option value="consultoria">Consultoría</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-message">Mensaje *</label>
+                            <textarea id="contact-message" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" required>
+                                He leído y acepto la <a href="#">política de privacidad</a> *
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn">Enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mapa y oficinas -->
+        <section class="section">
+            <h2 class="section-title">Nuestras oficinas</h2>
+            
+            <div class="office-locations" style="margin-bottom: 30px;">
+                <div class="office-tabs" style="display: flex; margin-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <button class="office-tab active" data-office="mexico" style="padding: 10px 20px; background: none; border: none; cursor: pointer; font-weight: bold; color: var(--primary-color); border-bottom: 3px solid var(--primary-color);">México (Sede central)</button>
+                    <button class="office-tab" data-office="colombia" style="padding: 10px 20px; background: none; border: none; cursor: pointer; font-weight: bold; color: var(--light-text);">Colombia</button>
+                    <button class="office-tab" data-office="peru" style="padding: 10px 20px; background: none; border: none; cursor: pointer; font-weight: bold; color: var(--light-text);">Perú</button>
+                    <button class="office-tab" data-office="chile" style="padding: 10px 20px; background: none; border: none; cursor: pointer; font-weight: bold; color: var(--light-text);">Chile</button>
+                </div>
+                
+                <div class="office-content active" id="mexico-office">
+                    <div style="display: grid; grid-template-columns: 1fr 3fr; gap: 20px;">
+                        <div class="office-info">
+                            <h3>OracleTech México</h3>
+                            <p><i class="fas fa-map-marker-alt"></i> Av. Tecnológica 123, Ciudad Empresarial, CP 12345, México</p>
+                            <p><i class="fas fa-phone"></i> +52 (123) 456 7890</p>
+                            <p><i class="fas fa-envelope"></i> mexico@oracletech.com</p>
+                        </div>
+                        <div class="office-map">
+                            <!-- Mapa (representación simple para demostración) -->
+                            <div style="background-color: #f5f5f5; height: 300px; display: flex; justify-content: center; align-items: center; border-radius: var(--border-radius);">
+                                <p style="color: var(--light-text);">Mapa de ubicación - México</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="office-content" id="colombia-office" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 3fr; gap: 20px;">
+                        <div class="office-info">
+                            <h3>OracleTech Colombia</h3>
+                            <p><i class="fas fa-map-marker-alt"></i> Calle Tecnológica 456, Bogotá, Colombia</p>
+                            <p><i class="fas fa-phone"></i> +57 (1) 234 5678</p>
+                            <p><i class="fas fa-envelope"></i> colombia@oracletech.com</p>
+                        </div>
+                        <div class="office-map">
+                            <!-- Mapa (representación simple para demostración) -->
+                            <div style="background-color: #f5f5f5; height: 300px; display: flex; justify-content: center; align-items: center; border-radius: var(--border-radius);">
+                                <p style="color: var(--light-text);">Mapa de ubicación - Colombia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="office-content" id="peru-office" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 3fr; gap: 20px;">
+                        <div class="office-info">
+                            <h3>OracleTech Perú</h3>
+                            <p><i class="fas fa-map-marker-alt"></i> Av. San Isidro 789, Lima, Perú</p>
+                            <p><i class="fas fa-phone"></i> +51 (1) 345 6789</p>
+                            <p><i class="fas fa-envelope"></i> peru@oracletech.com</p>
+                        </div>
+                        <div class="office-map">
+                            <!-- Mapa (representación simple para demostración) -->
+                            <div style="background-color: #f5f5f5; height: 300px; display: flex; justify-content: center; align-items: center; border-radius: var(--border-radius);">
+                                <p style="color: var(--light-text);">Mapa de ubicación - Perú</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="office-content" id="chile-office" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 3fr; gap: 20px;">
+                        <div class="office-info">
+                            <h3>OracleTech Chile</h3>
+                            <p><i class="fas fa-map-marker-alt"></i> Calle Providencia 1010, Santiago, Chile</p>
+                            <p><i class="fas fa-phone"></i> +56 (2) 456 7890</p>
+                            <p><i class="fas fa-envelope"></i> chile@oracletech.com</p>
+                        </div>
+                        <div class="office-map">
+                            <!-- Mapa (representación simple para demostración) -->
+                            <div style="background-color: #f5f5f5; height: 300px; display: flex; justify-content: center; align-items: center; border-radius: var(--border-radius);">
+                                <p style="color: var(--light-text);">Mapa de ubicación - Chile</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preguntas frecuentes -->
+        <section class="section">
+            <h2 class="section-title">Preguntas frecuentes</h2>
+            
+            <div class="faq-container" style="margin-top: 20px;">
+                <div class="faq-item" style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                    <div class="faq-question" style="display: flex; justify-content: space-between; cursor: pointer;">
+                        <h3 style="margin: 0;">¿Cuáles son los horarios de atención al cliente?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none; padding-top: 15px;">
+                        <p>Nuestro equipo de atención al cliente está disponible de lunes a viernes de 9:00 AM a 6:00 PM y los sábados de 9:00 AM a 1:00 PM. Para emergencias técnicas, ofrecemos soporte 24/7 a través de nuestro servicio premium.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                    <div class="faq-question" style="display: flex; justify-content: space-between; cursor: pointer;">
+                        <h3 style="margin: 0;">¿Cómo puedo solicitar una demostración de sus productos?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none; padding-top: 15px;">
+                        <p>Puede solicitar una demostración de nuestros productos completando el formulario de contacto en esta página, seleccionando "Ventas" en el campo de asunto y especificando el producto que le interesa. También puede llamarnos directamente al número de ventas o enviarnos un correo electrónico.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                    <div class="faq-question" style="display: flex; justify-content: space-between; cursor: pointer;">
+                        <h3 style="margin: 0;">¿Ofrecen servicios de soporte técnico para sus productos?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none; padding-top: 15px;">
+                        <p>Sí, ofrecemos diferentes niveles de soporte técnico según las necesidades de nuestros clientes. Desde soporte básico incluido con todos nuestros productos hasta planes premium con atención 24/7 y tiempos de respuesta garantizados. Puede encontrar más información en nuestra sección de servicios o contactar con nuestro equipo de ventas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                    <div class="faq-question" style="display: flex; justify-content: space-between; cursor: pointer;">
+                        <h3 style="margin: 0;">¿Realizan implementaciones personalizadas según nuestras necesidades?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none; padding-top: 15px;">
+                        <p>Absolutamente. Entendemos que cada empresa tiene necesidades únicas, por lo que ofrecemos servicios de personalización e implementación a medida. Nuestro equipo de consultores trabajará con usted para entender sus requerimientos específicos y desarrollar una solución que se adapte perfectamente a su negocio.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="margin-bottom: 15px; padding-bottom: 15px;">
+                    <div class="faq-question" style="display: flex; justify-content: space-between; cursor: pointer;">
+                        <h3 style="margin: 0;">¿Tienen representantes en otros países además de los mencionados?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none; padding-top: 15px;">
+                        <p>Aunque nuestras oficinas principales están en México, Colombia, Perú y Chile, tenemos una red de socios estratégicos en varios países de América Latina, Estados Unidos y Europa. Independientemente de su ubicación, podemos proporcionarle nuestros servicios. Contáctenos para más información sobre representantes en su país.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>OracleTech</h3>
+                    <p>Expertos en soluciones de bases de datos y servidores para empresas de todos los tamaños.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="historia.html">Historia</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Tecnológica 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@oracletech.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir noticias y ofertas exclusivas.</p>
+                    <form>
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit" class="btn">Suscribir</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2025 OracleTech. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cambiar entre pestañas de oficinas
+            const officeTabs = document.querySelectorAll('.office-tab');
+            const officeContents = document.querySelectorAll('.office-content');
+            
+            officeTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remover clase activa de todas las pestañas
+                    officeTabs.forEach(t => {
+                        t.classList.remove('active');
+                        t.style.color = 'var(--light-text)';
+                        t.style.borderBottom = 'none';
+                    });
+                    
+                    // Agregar clase activa a la pestaña clicada
+                    this.classList.add('active');
+                    this.style.color = 'var(--primary-color)';
+                    this.style.borderBottom = '3px solid var(--primary-color)';
+                    
+                    // Ocultar todos los contenidos
+                    officeContents.forEach(content => {
+                        content.style.display = 'none';
+                        content.classList.remove('active');
+                    });
+                    
+                    // Mostrar el contenido correspondiente
+                    const officeId = this.getAttribute('data-office');
+                    const officeContent = document.getElementById(officeId + '-office');
+                    officeContent.style.display = 'block';
+                    officeContent.classList.add('active');
+                });
+            });
+            
+            // Funcionalidad de acordeón para FAQs
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    if (answer.style.display === 'none' || !answer.style.display) {
+                        answer.style.display = 'block';
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        answer.style.display = 'none';
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta - OracleTech</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .login-register-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .login-register-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .user-dashboard .dashboard-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .user-dashboard .dashboard-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .user-dashboard .dashboard-menu a {
+            display: block;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: var(--border-radius);
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .user-dashboard .dashboard-menu a:hover,
+        .user-dashboard .dashboard-menu a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .user-dashboard .dashboard-content {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .user-dashboard .dashboard-tab {
+            display: none;
+        }
+        
+        .user-dashboard .dashboard-tab.active {
+            display: block;
+        }
+        
+        .error {
+            border-color: red !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fas fa-database"></i>
+            <h2>OracleTech</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+            <li><a href="servicios.html"><i class="fas fa-cogs"></i> <span>Servicios</span></a></li>
+            <li><a href="productos.html"><i class="fas fa-server"></i> <span>Productos</span></a></li>
+            <li><a href="historia.html"><i class="fas fa-history"></i> <span>Historia</span></a></li>
+            <li><a href="contacto.html"><i class="fas fa-envelope"></i> <span>Contacto</span></a></li>
+            <li><a href="usuario.html" class="active"><i class="fas fa-user"></i> <span>Mi cuenta</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <header>
+            <h1 class="page-title">Mi Cuenta</h1>
+            <div class="user-actions">
+                <!-- Se llenará dinámicamente con JS -->
+            </div>
+        </header>
+
+        <!-- Contenido dinámico: se mostrará login/registro o panel de usuario según estado -->
+        <div id="user-content">
+            <!-- Por defecto se muestra el formulario de login/registro -->
+            <section class="section">
+                <div class="login-register-container">
+                    <!-- Formulario de Login -->
+                    <div class="login-form-container">
+                        <h2 class="section-title">Iniciar Sesión</h2>
+                        <p>Si ya tiene una cuenta, inicie sesión con sus credenciales.</p>
+                        
+                        <form id="login-form" class="login-form">
+                            <div class="form-group">
+                                <label for="login-username">Usuario o correo electrónico *</label>
+                                <input type="text" id="login-username" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="login-password">Contraseña *</label>
+                                <input type="password" id="login-password" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    Recordarme
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn">Iniciar sesión</button>
+                            
+                            <div style="margin-top: 20px; text-align: center;">
+                                <a href="#" style="color: var(--primary-color); text-decoration: none;">¿Olvidó su contraseña?</a>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Formulario de Registro -->
+                    <div class="register-form-container">
+                        <h2 class="section-title">Crear Cuenta</h2>
+                        <p>Regístrese para acceder a funciones exclusivas como seguimiento de pedidos y historial de compras.</p>
+                        
+                        <form id="register-form" class="register-form">
+                            <div class="form-group">
+                                <label for="register-username">Nombre de usuario *</label>
+                                <input type="text" id="register-username" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-email">Correo electrónico *</label>
+                                <input type="email" id="register-email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-password">Contraseña *</label>
+                                <input type="password" id="register-password" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm-password">Confirmar contraseña *</label>
+                                <input type="password" id="confirm-password" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" required>
+                                    He leído y acepto los <a href="#">términos y condiciones</a> *
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn">Crear cuenta</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>OracleTech</h3>
+                    <p>Expertos en soluciones de bases de datos y servidores para empresas de todos los tamaños.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="historia.html">Historia</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Tecnológica 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@oracletech.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir noticias y ofertas exclusivas.</p>
+                    <form>
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit" class="btn">Suscribir</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2025 OracleTech. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
