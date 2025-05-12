@@ -1,20 +1,51 @@
 // Script principal para todas las páginas
 
-document.addEventListener('DOMContentLoaded', function() {
-    if(localStorage.getItem('isLoggedIn') !== 'true' && window.location.pathname !== '/inicio-sesion.html') {
+document.addEventListener('DOMContentLoaded', function () {
+    const getBasePath = () => {
+        // Obtener el pathname completo
+        const fullPath = window.location.pathname;
+
+        // Encontrar la posición del último directorio antes del archivo actual
+        const lastSlashIndex = fullPath.lastIndexOf('/');
+
+        // Si el archivo está en la raíz del sitio, no hay prefijo
+        if (lastSlashIndex <= 0) {
+            return '';
+        }
+
+        // Extraer el prefijo hasta el último directorio
+        const basePath = fullPath.substring(0, lastSlashIndex);
+
+        // Si estamos en la página de inicio de sesión, subir un nivel
+        if (fullPath.endsWith('/inicio-sesion.html')) {
+            const prevSlashIndex = basePath.lastIndexOf('/');
+            return prevSlashIndex > 0 ? basePath.substring(0, prevSlashIndex) : '';
+        }
+
+        return basePath;
+    };
+
+    // Verificar si el usuario está en la página de inicio de sesión
+    const isLoginPage = () => {
+        return window.location.pathname.endsWith('/inicio-sesion.html');
+    };
+
+    // Redirigir si no está autenticado y no está ya en la página de inicio de sesión
+    if (localStorage.getItem('isLoggedIn') !== 'true' && !isLoginPage()) {
         console.log('No está logueado, redirigiendo a inicio de sesión');
-       
-        window.location.href = "/inicio-sesion.html";
+
+        const basePath = getBasePath();
+        window.location.href = `${basePath}/inicio-sesion.html`;
     }
     // Marcar elemento activo en el menú lateral
     markActiveMenuItem();
-    
+
     // Inicializar carrito si está en localStorage
     initializeCart();
-    
+
     // Funcionalidad de usuario
     setupUserFunctionality();
-    
+
     // Inicializar formularios con validación si existen
     setupForms();
 });
@@ -23,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function markActiveMenuItem() {
     const currentLocation = window.location.pathname;
     const menuItems = document.querySelectorAll('.sidebar-menu a');
-    
+
     menuItems.forEach(item => {
         const href = item.getAttribute('href');
         if (currentLocation.includes(href) && href !== '#' && href !== '') {
@@ -42,17 +73,17 @@ function initializeCart() {
         cart = JSON.parse(savedCart);
         updateCartCounter();
     }
-    
+
     // Agregar eventListeners para productos si estamos en la página de productos
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     addToCartButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
+        button.addEventListener('click', function (event) {
             event.preventDefault();
             const productId = this.getAttribute('data-id');
             addToCart(productId);
         });
     });
-    
+
     // Inicializar funcionalidad de carrito en la página de compra
     if (window.location.pathname.includes('compra.html')) {
         displayCartItems();
@@ -68,7 +99,7 @@ function addToCart(productId) {
             if (product) {
                 // Verificar si el producto ya está en el carrito
                 const existingItem = cart.find(item => item.id === parseInt(productId));
-                
+
                 if (existingItem) {
                     existingItem.quantity += 1;
                 } else {
@@ -80,11 +111,11 @@ function addToCart(productId) {
                         quantity: 1
                     });
                 }
-                
+
                 // Guardar en localStorage
                 localStorage.setItem('cart', JSON.stringify(cart));
                 updateCartCounter();
-                
+
                 // Mostrar mensaje de éxito
                 showNotification('Producto agregado al carrito', 'success');
             }
@@ -100,7 +131,7 @@ function updateCartCounter() {
     if (cartCounter) {
         const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
         cartCounter.textContent = itemCount;
-        
+
         // Mostrar u ocultar el contador
         if (itemCount > 0) {
             cartCounter.style.display = 'inline-flex';
@@ -113,14 +144,14 @@ function updateCartCounter() {
 function displayCartItems() {
     const cartItemsContainer = document.querySelector('.cart-items');
     if (!cartItemsContainer) return;
-    
+
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p>No hay productos en su carrito.</p>';
         document.querySelector('.order-summary').style.display = 'none';
         document.querySelector('.checkout-form').style.display = 'none';
         return;
     }
-    
+
     let cartHTML = '';
     cart.forEach(item => {
         cartHTML += `
@@ -143,7 +174,7 @@ function displayCartItems() {
             </div>
         `;
     });
-    
+
     cartItemsContainer.innerHTML = cartHTML;
     updateOrderSummary();
 }
@@ -151,13 +182,13 @@ function displayCartItems() {
 function updateOrderSummary() {
     const subtotalElement = document.querySelector('.summary-subtotal .value');
     const totalElement = document.querySelector('.summary-total .value');
-    
+
     if (!subtotalElement || !totalElement) return;
-    
+
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const shipping = subtotal > 0 ? 10 : 0; // Costo de envío fijo
     const total = subtotal + shipping;
-    
+
     document.querySelector('.summary-shipping .value').textContent = `$${shipping.toLocaleString()}`;
     subtotalElement.textContent = `$${subtotal.toLocaleString()}`;
     totalElement.textContent = `$${total.toLocaleString()}`;
@@ -166,34 +197,34 @@ function updateOrderSummary() {
 function setupCheckoutEvents() {
     // Event listeners para botones de cantidad
     document.querySelectorAll('.increase-quantity').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const cartItem = this.closest('.cart-item');
             const productId = parseInt(cartItem.getAttribute('data-id'));
             updateCartItemQuantity(productId, 1);
         });
     });
-    
+
     document.querySelectorAll('.decrease-quantity').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const cartItem = this.closest('.cart-item');
             const productId = parseInt(cartItem.getAttribute('data-id'));
             updateCartItemQuantity(productId, -1);
         });
     });
-    
+
     // Event listeners para botón eliminar
     document.querySelectorAll('.remove-item').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const cartItem = this.closest('.cart-item');
             const productId = parseInt(cartItem.getAttribute('data-id'));
             removeCartItem(productId);
         });
     });
-    
+
     // Event listener para el formulario de compra
     const checkoutForm = document.querySelector('.checkout-form');
     if (checkoutForm) {
-        checkoutForm.addEventListener('submit', function(event) {
+        checkoutForm.addEventListener('submit', function (event) {
             event.preventDefault();
             if (validateCheckoutForm()) {
                 processOrder();
@@ -205,15 +236,15 @@ function setupCheckoutEvents() {
 function updateCartItemQuantity(productId, change) {
     const itemIndex = cart.findIndex(item => item.id === productId);
     if (itemIndex === -1) return;
-    
+
     cart[itemIndex].quantity += change;
-    
+
     // Eliminar producto si la cantidad es 0 o menor
     if (cart[itemIndex].quantity <= 0) {
         removeCartItem(productId);
         return;
     }
-    
+
     // Actualizar UI y localStorage
     document.querySelector(`.cart-item[data-id="${productId}"] .quantity-input`).value = cart[itemIndex].quantity;
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -224,20 +255,20 @@ function updateCartItemQuantity(productId, change) {
 function removeCartItem(productId) {
     cart = cart.filter(item => item.id !== productId);
     localStorage.setItem('cart', JSON.stringify(cart));
-    
+
     // Actualizar UI
     const cartItem = document.querySelector(`.cart-item[data-id="${productId}"]`);
     if (cartItem) {
         cartItem.remove();
     }
-    
+
     // Si no hay productos, mostrar mensaje
     if (cart.length === 0) {
         displayCartItems();
     } else {
         updateOrderSummary();
     }
-    
+
     updateCartCounter();
 }
 
@@ -245,7 +276,7 @@ function validateCheckoutForm() {
     // Implementar validación del formulario de compra
     const requiredFields = document.querySelectorAll('.checkout-form [required]');
     let isValid = true;
-    
+
     requiredFields.forEach(field => {
         if (!field.value.trim()) {
             field.classList.add('error');
@@ -254,7 +285,7 @@ function validateCheckoutForm() {
             field.classList.remove('error');
         }
     });
-    
+
     // Validación de correo electrónico
     const emailField = document.querySelector('#email');
     if (emailField && emailField.value) {
@@ -264,23 +295,23 @@ function validateCheckoutForm() {
             isValid = false;
         }
     }
-    
+
     if (!isValid) {
         showNotification('Por favor, complete todos los campos requeridos correctamente', 'error');
     }
-    
+
     return isValid;
 }
 
 function processOrder() {
     // Simular procesamiento de orden
     showNotification('Procesando su orden...', 'info');
-    
+
     setTimeout(() => {
         // Limpiar carrito
         cart = [];
         localStorage.removeItem('cart');
-        
+
         // Mostrar mensaje de éxito
         document.querySelector('.checkout-container').innerHTML = `
             <div class="section">
@@ -292,7 +323,7 @@ function processOrder() {
                 </div>
             </div>
         `;
-        
+
         updateCartCounter();
     }, 2000);
 }
@@ -302,7 +333,7 @@ function setupUserFunctionality() {
     // Comprobar si el usuario está logueado
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const userSection = document.querySelector('.user-actions');
-    
+
     if (userSection) {
         if (isLoggedIn) {
             const username = localStorage.getItem('username') || 'Usuario';
@@ -312,9 +343,9 @@ function setupUserFunctionality() {
                 <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
                 <a href="compra.html"><i class="fas fa-shopping-cart"></i> Carrito <span class="cart-counter">0</span></a>
             `;
-            
+
             // Evento para cerrar sesión
-            document.getElementById('logout').addEventListener('click', function(event) {
+            document.getElementById('logout').addEventListener('click', function (event) {
                 event.preventDefault();
                 localStorage.removeItem('isLoggedIn');
                 localStorage.removeItem('username');
@@ -327,29 +358,29 @@ function setupUserFunctionality() {
             `;
         }
     }
-    
+
     // Inicializar formulario de login si estamos en la página de usuario
     if (window.location.pathname.includes('usuario.html')) {
         const loginForm = document.querySelector('#login-form');
         const registerForm = document.querySelector('#register-form');
-        
+
         if (isLoggedIn) {
             // Mostrar panel de usuario
             displayUserDashboard();
         } else if (loginForm) {
             // Setup formulario de login
-            loginForm.addEventListener('submit', function(event) {
+            loginForm.addEventListener('submit', function (event) {
                 event.preventDefault();
-                
+
                 const username = document.querySelector('#login-username').value;
                 const password = document.querySelector('#login-password').value;
-                
+
                 // Simulación de login (en un caso real, esto sería una API)
                 if (username && password) {
                     // Guardar estado de login en localStorage
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('username', username);
-                    
+
                     showNotification('¡Bienvenido de nuevo!', 'success');
                     setTimeout(() => {
                         window.location.href = 'index.html';
@@ -359,35 +390,35 @@ function setupUserFunctionality() {
                 }
             });
         }
-        
+
         if (registerForm) {
             // Setup formulario de registro
-            registerForm.addEventListener('submit', function(event) {
+            registerForm.addEventListener('submit', function (event) {
                 event.preventDefault();
-                
+
                 const username = document.querySelector('#register-username').value;
                 const email = document.querySelector('#register-email').value;
                 const password = document.querySelector('#register-password').value;
                 const confirmPassword = document.querySelector('#confirm-password').value;
-                
+
                 // Validación simple
                 if (!username || !email || !password || !confirmPassword) {
                     showNotification('Por favor, complete todos los campos', 'error');
                     return;
                 }
-                
+
                 if (password !== confirmPassword) {
                     showNotification('Las contraseñas no coinciden', 'error');
                     return;
                 }
-                
+
                 // Simulación de registro exitoso
                 showNotification('¡Registro exitoso!', 'success');
-                
+
                 // Guardar estado de login en localStorage
                 localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('username', username);
-                
+
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 1500);
@@ -399,7 +430,7 @@ function setupUserFunctionality() {
 function displayUserDashboard() {
     const username = localStorage.getItem('username') || 'Usuario';
     const mainContent = document.querySelector('.main-content');
-    
+
     if (mainContent) {
         mainContent.innerHTML = `
             <header>
@@ -474,40 +505,40 @@ function displayUserDashboard() {
                 </div>
             </div>
         `;
-        
+
         // Eventos para las pestañas del dashboard
         const tabLinks = document.querySelectorAll('.dashboard-menu a');
         const tabContents = document.querySelectorAll('.dashboard-tab');
-        
+
         tabLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
+            link.addEventListener('click', function (event) {
                 event.preventDefault();
-                
+
                 // Eliminar active de todos los enlaces y tabs
                 tabLinks.forEach(l => l.classList.remove('active'));
                 tabContents.forEach(t => t.classList.remove('active'));
-                
+
                 // Agregar active al enlace clicado
                 this.classList.add('active');
-                
+
                 // Mostrar el tab correspondiente
                 const tabId = this.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
             });
         });
-        
+
         // Evento para cerrar sesión
-        document.getElementById('logout').addEventListener('click', function(event) {
+        document.getElementById('logout').addEventListener('click', function (event) {
             event.preventDefault();
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('username');
             window.location.href = 'index.html';
         });
-        
+
         // Evento para el formulario de perfil
         const profileForm = document.getElementById('profile-form');
         if (profileForm) {
-            profileForm.addEventListener('submit', function(event) {
+            profileForm.addEventListener('submit', function (event) {
                 event.preventDefault();
                 showNotification('Perfil actualizado correctamente', 'success');
             });
@@ -519,19 +550,19 @@ function displayUserDashboard() {
 function setupForms() {
     const contactForm = document.querySelector('#contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
+        contactForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            
+
             // Validación simple del formulario
             const name = document.querySelector('#contact-name').value;
             const email = document.querySelector('#contact-email').value;
             const message = document.querySelector('#contact-message').value;
-            
+
             if (!name || !email || !message) {
                 showNotification('Por favor, complete todos los campos', 'error');
                 return;
             }
-            
+
             // Simular envío de formulario
             showNotification('Mensaje enviado correctamente', 'success');
             contactForm.reset();
@@ -545,15 +576,15 @@ function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.textContent = message;
-    
+
     // Añadir al DOM
     document.body.appendChild(notification);
-    
+
     // Mostrar con animación
     setTimeout(() => {
         notification.classList.add('show');
     }, 10);
-    
+
     // Ocultar después de 3 segundos
     setTimeout(() => {
         notification.classList.remove('show');
