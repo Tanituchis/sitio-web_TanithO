@@ -1,6 +1,11 @@
 // Script principal para todas las páginas
 
 document.addEventListener('DOMContentLoaded', function() {
+    if(localStorage.getItem('isLoggedIn') !== 'true' && window.location.pathname !== '/inicio-sesion.html') {
+        console.log('No está logueado, redirigiendo a inicio de sesión');
+       
+        window.location.href = "/inicio-sesion.html";
+    }
     // Marcar elemento activo en el menú lateral
     markActiveMenuItem();
     
