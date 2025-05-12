@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Inicio de Sesión</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     * {
@@ -130,7 +130,7 @@
 <body>
   <div class="login-container" role="main" aria-label="Formulario de inicio de sesión">
     <div class="logo" aria-label="Logo de la empresa">
-     <i class="fas fa-database"></i>
+      <i class="fas fa-database"></i>
     </div>
     <h1>Iniciar Sesión</h1>
     <form id="loginForm" aria-describedby="loginMessage" novalidate>
@@ -174,7 +174,31 @@
           loginForm.reset();
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('username', email);
-          window.location.href = '/index.html';
+          const getBasePath = () => {
+            // Obtener el pathname completo
+            const fullPath = window.location.pathname;
+
+            // Encontrar la posición del último directorio antes del archivo actual
+            const lastSlashIndex = fullPath.lastIndexOf('/');
+
+            // Si el archivo está en la raíz del sitio, no hay prefijo
+            if (lastSlashIndex <= 0) {
+              return '';
+            }
+
+            // Extraer el prefijo hasta el último directorio
+            const basePath = fullPath.substring(0, lastSlashIndex);
+
+            // Si estamos en la página de inicio de sesión, subir un nivel
+            if (fullPath.endsWith('/inicio-sesion.html')) {
+              const prevSlashIndex = basePath.lastIndexOf('/');
+              return prevSlashIndex > 0 ? basePath.substring(0, prevSlashIndex) : '';
+            }
+
+            return basePath;
+          };
+
+          window.location.href = getBasePath() + '/index.html';
         }, 1500);
 
       });
